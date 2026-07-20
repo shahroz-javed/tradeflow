@@ -14,6 +14,8 @@ import WeeklyReview from './pages/WeeklyReview'
 import MonthlyReview from './pages/MonthlyReview'
 import Settings from './pages/Settings'
 
+
+
 export default function App() {
   return (
     <Routes>
