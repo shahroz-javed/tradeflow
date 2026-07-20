@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-bg text-text;
+  }
+
+  body {
+    @apply font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-accent/30 text-text;
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0d12;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #262c38;
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #333b4a;
+  }
+}
+
+@layer components {
+  .input-base {
+    @apply w-full rounded-md border border-border bg-panel-2 px-3 py-2 text-sm text-text placeholder:text-text-dim/60 outline-none transition-colors focus:border-accent;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-border bg-panel-2 px-4 py-2 text-sm font-medium text-text transition-colors hover:bg-border disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-loss/10 px-4 py-2 text-sm font-medium text-loss transition-colors hover:bg-loss/20 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .card {
+    @apply rounded-lg border border-border bg-panel p-4;
+  }
+
+  .label {
+    @apply mb-1.5 block text-xs font-medium text-text-dim;
+  }
+
+  .mono {
+    @apply font-mono tabular-nums;
+  }
+}
