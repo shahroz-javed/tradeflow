@@ -20,7 +20,7 @@ const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 const db = getFirestore(app)
 
-const EMAIL = process.env.VITE_DEFAULT_EMAIL || 'shahroz@tradeflow.com' // change to whatever you want
+const EMAIL = process.env.VITE_DEFAULT_EMAIL // change to whatever you want
 const PASSWORD = '#tradeflow123pass' // change this before running
 const DISPLAY_NAME = 'Shahroz'
 
