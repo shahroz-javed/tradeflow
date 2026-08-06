@@ -68,8 +68,10 @@ export function deriveDirection(entry, stopLoss) {
 /**
  * Full trade-planner calculation given raw form inputs.
  * Direction is derived from entry/stopLoss, not passed in.
+ * `spreadPips` accounts for the bid/ask spread — it reduces effective SL distance
+ * and increases effective TP distance, so the real R:R is worse than the raw one.
  */
-export function calculateTradePlan({ pairKey, capital, riskPercent, leverage, entry, stopLoss, takeProfit }) {
+export function calculateTradePlan({ pairKey, capital, riskPercent, leverage, entry, stopLoss, takeProfit, spreadPips = 0 }) {
   const pair = PAIRS[pairKey]
   const empty = {
     pair,
@@ -78,6 +80,10 @@ export function calculateTradePlan({ pairKey, capital, riskPercent, leverage, en
     riskAmount: 0,
     slPips: 0,
     tpPips: 0,
+    effectiveSlPips: 0,
+    effectiveTpPips: 0,
+    riskReward: 0,
+    effectiveRR: 0,
     lotExact: 0,
     lotRounded: 0,
     positionUnits: 0,
@@ -86,9 +92,9 @@ export function calculateTradePlan({ pairKey, capital, riskPercent, leverage, en
     actualRisk: 0,
     potentialProfit: 0,
     potentialLoss: 0,
-    riskReward: 0,
     breakEvenWinRate: 0,
     direction: null,
+    spreadPips,
     warning: '',
   }
 
@@ -106,6 +112,9 @@ export function calculateTradePlan({ pairKey, capital, riskPercent, leverage, en
   const slPips = priceDistanceInPips(pair, entry, stopLoss)
   const tpPips = takeProfit && takeProfit !== entry ? priceDistanceInPips(pair, entry, takeProfit) : 0
 
+  const effectiveSlPips = Math.max(slPips - spreadPips, 0)
+  const effectiveTpPips = tpPips + spreadPips
+
   const { exact: lotExact, rounded: lotRounded } = calculateLotSize(riskAmount, slPips, valuePerLot)
 
   const positionUnits = positionSizeUnits(pair, lotRounded)
@@ -116,11 +125,15 @@ export function calculateTradePlan({ pairKey, capital, riskPercent, leverage, en
   const potentialLoss = actualRisk
   const potentialProfit = tpPips ? lotRounded * tpPips * valuePerLot : 0
   const riskReward = tpPips && slPips ? tpPips / slPips : 0
+  const effectiveRR = effectiveTpPips && effectiveSlPips ? effectiveTpPips / effectiveSlPips : 0
 
   let warning = ''
   if (lotRounded === 0 && slPips > 0) {
     warning =
       "Position size rounds to 0 — increase risk %, tighten stop, or this trade isn't viable at current account size."
+  } else if (effectiveSlPips <= 0 && slPips > 0) {
+    warning =
+      `Spread (${spreadPips} pip${spreadPips !== 1 ? 's' : ''}) is wider than your stop — this trade is not viable.`
   }
 
   return {
@@ -130,6 +143,8 @@ export function calculateTradePlan({ pairKey, capital, riskPercent, leverage, en
     riskAmount,
     slPips,
     tpPips,
+    effectiveSlPips,
+    effectiveTpPips,
     lotExact,
     lotRounded,
     positionUnits,
@@ -139,8 +154,10 @@ export function calculateTradePlan({ pairKey, capital, riskPercent, leverage, en
     potentialProfit,
     potentialLoss,
     riskReward,
+    effectiveRR,
     breakEvenWinRate: breakEvenWinRate(riskReward),
     direction,
+    spreadPips,
     warning,
   }
 }
@@ -161,11 +178,19 @@ export function buildTradeSummary({ pairKey, capital, riskPercent, entry, stopLo
   const rrText = plan.riskReward ? `1:${plan.riskReward.toFixed(2)}` : '—'
   const beText = plan.breakEvenWinRate ? `${plan.breakEvenWinRate.toFixed(1)}%` : '—'
 
+  let spreadLine = ''
+  if (plan.spreadPips) {
+    const effSlText = formatDistanceForSummary(pair, plan.effectiveSlPips)
+    const effTpText = plan.tpPips ? formatDistanceForSummary(pair, plan.effectiveTpPips) : '—'
+    const effRrText = plan.effectiveRR ? `1:${plan.effectiveRR.toFixed(2)}` : '—'
+    spreadLine = `\nSpread:    ${plan.spreadPips.toFixed(1)} pips  |  Eff. SL: ${effSlText}  |  Eff. TP: ${effTpText}  |  Eff. R:R = ${effRrText}`
+  }
+
   return `TRADE PLAN — ${pair.label} (${dirLabel})
 Entry:      ${Number(entry).toFixed(pair.decimals)}
 Stop Loss:  ${Number(stopLoss).toFixed(pair.decimals)}  (${slText})
 Take Profit:${takeProfit ? Number(takeProfit).toFixed(pair.decimals) : '—'}  (${tpText})
-R:R = ${rrText}  |  Breakeven win rate: ${beText}
+R:R = ${rrText}  |  Breakeven win rate: ${beText}${spreadLine}
 
 Account: $${Number(capital).toFixed(2)}  |  Risk: ${Number(riskPercent).toFixed(2)}% ($${plan.riskAmount.toFixed(2)})
 Lot size: ${plan.lotRounded.toFixed(2)} (${plan.positionUnits.toLocaleString()} ${pair.unit})

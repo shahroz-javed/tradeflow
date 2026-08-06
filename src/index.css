@@ -3,6 +3,33 @@
 @tailwind utilities;
 
 @layer base {
+  :root,
+  .theme-dark {
+    --color-bg: 10 13 18;
+    --color-panel: 18 22 29;
+    --color-panel-2: 26 31 40;
+    --color-border: 38 44 56;
+    --color-text: 231 235 240;
+    --color-text-dim: 139 150 172;
+    --color-accent: 77 141 247;
+    --color-profit: 34 197 139;
+    --color-loss: 240 85 95;
+    --color-warning: 244 184 96;
+  }
+
+  :root.theme-light {
+    --color-bg: 245 247 250;
+    --color-panel: 255 255 255;
+    --color-panel-2: 237 240 245;
+    --color-border: 209 214 224;
+    --color-text: 26 29 35;
+    --color-text-dim: 107 114 128;
+    --color-accent: 77 141 247;
+    --color-profit: 34 197 139;
+    --color-loss: 240 85 95;
+    --color-warning: 244 184 96;
+  }
+
   html {
     @apply bg-bg text-text;
   }
@@ -29,15 +56,33 @@
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #0a0d12;
+    background: rgb(var(--color-bg));
   }
   ::-webkit-scrollbar-thumb {
-    background: #262c38;
+    background: rgb(var(--color-border));
     border-radius: 6px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #333b4a;
+    background: rgb(var(--color-text-dim));
   }
+
+  * {
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+}
+
+/* Session-based dashboard themes */
+.session-asian {
+  --color-accent: 77 141 247;
+}
+.session-london {
+  --color-accent: 34 197 139;
+}
+.session-newyork {
+  --color-accent: 244 184 96;
+}
+.session-overlap {
+  --color-accent: 250 190 70;
 }
 
 @layer components {

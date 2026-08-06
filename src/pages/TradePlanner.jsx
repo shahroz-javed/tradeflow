@@ -10,6 +10,12 @@ import { formatCurrency, formatRR, pairLabel } from '../utils/formatters'
 
 const QUICK_RR = [1, 2, 3, 4]
 
+const DEFAULT_SPREADS = {
+  EURUSD: 0.8, GBPUSD: 0.9, AUDUSD: 0.8, NZDUSD: 1.0,
+  USDJPY: 0.7, USDCAD: 0.8, USDCHF: 0.9,
+  XAUUSD: 3.0, XAGUSD: 4.0,
+}
+
 export default function TradePlanner() {
   const navigate = useNavigate()
   const { profile, updateProfile } = useProfile()
@@ -21,6 +27,7 @@ export default function TradePlanner() {
   const [entry, setEntry] = useState('')
   const [stopLoss, setStopLoss] = useState('')
   const [takeProfit, setTakeProfit] = useState('')
+  const [spreadPips, setSpreadPips] = useState(DEFAULT_SPREADS.EURUSD)
   const [userEditedPrices, setUserEditedPrices] = useState(false)
   const [copied, setCopied] = useState(false)
 
@@ -49,6 +56,11 @@ export default function TradePlanner() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pairKey])
 
+  // Reset spread to default when pair changes
+  useEffect(() => {
+    setSpreadPips(DEFAULT_SPREADS[pairKey] ?? 1)
+  }, [pairKey])
+
   const plan = useMemo(
     () =>
       calculateTradePlan({
@@ -59,8 +71,9 @@ export default function TradePlanner() {
         entry: Number(entry),
         stopLoss: Number(stopLoss),
         takeProfit: Number(takeProfit),
+        spreadPips: Number(spreadPips) || 0,
       }),
-    [pairKey, capital, riskPercent, leverage, entry, stopLoss, takeProfit],
+    [pairKey, capital, riskPercent, leverage, entry, stopLoss, takeProfit, spreadPips],
   )
 
   function applyQuickRR(rr) {
@@ -109,6 +122,7 @@ export default function TradePlanner() {
       riskAmount: plan.riskAmount,
       riskPercent,
       plannedRR: plan.riskReward,
+      spreadPips: Number(spreadPips) || 0,
     }
     sessionStorage.setItem('tradeflow:plannerPrefill', JSON.stringify(tradePlan))
     navigate('/journal/new')
@@ -219,6 +233,21 @@ export default function TradePlanner() {
             <PairSelect value={pairKey} onChange={setPairKey} />
           </div>
 
+          <div>
+            <label className="label">Spread (pips)</label>
+            <input
+              type="number"
+              step="0.1"
+              min="0"
+              className="input-base mono w-full"
+              value={spreadPips}
+              onChange={(e) => setSpreadPips(e.target.value)}
+            />
+            <p className="mt-0.5 text-xs text-text-dim">
+              Default ~{DEFAULT_SPREADS[pairKey] ?? '—'} for {pairLabel(pairKey)} — adjust for your broker.
+            </p>
+          </div>
+
           <VoiceField
             label="Entry Price"
             value={entry}
@@ -305,6 +334,9 @@ export default function TradePlanner() {
               <InfoStat label="Risk Amount" value={formatCurrency(plan.riskAmount)} mono highlight />
               <InfoStat label="SL Distance" value={`${plan.slPips.toFixed(1)} pips`} mono />
               <InfoStat label="TP Distance" value={`${plan.tpPips.toFixed(1)} pips`} mono />
+              <InfoStat label="Spread" value={`${plan.spreadPips.toFixed(1)} pips`} mono />
+              <InfoStat label="Eff. SL (price move)" value={`${plan.effectiveSlPips.toFixed(1)} pips`} mono />
+              <InfoStat label="Eff. TP (price move)" value={`${plan.effectiveTpPips.toFixed(1)} pips`} mono />
               <InfoStat label="Lot Size (exact)" value={plan.lotExact.toFixed(4)} mono />
               <InfoStat label="Lot Size (rounded)" value={plan.lotRounded.toFixed(2)} mono highlight />
               <InfoStat label="Position Size" value={plan.positionUnits.toLocaleString()} mono />
@@ -323,7 +355,13 @@ export default function TradePlanner() {
                 mono
                 className="text-loss"
               />
-              <InfoStat label="Risk : Reward" value={formatRR(plan.riskReward)} mono highlight />
+              <InfoStat label="R:R (raw)" value={formatRR(plan.riskReward)} mono />
+              <InfoStat
+                label="R:R (with spread)"
+                value={formatRR(plan.effectiveRR)}
+                mono
+                highlight
+              />
               <InfoStat
                 label="Breakeven Win Rate"
                 value={`${plan.breakEvenWinRate.toFixed(1)}%`}

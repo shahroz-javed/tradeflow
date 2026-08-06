@@ -1,15 +1,16 @@
 import { NavLink } from 'react-router-dom'
 import {
+  AlertTriangle,
   BarChart3,
   Calculator,
   CalendarDays,
   ClipboardCheck,
+  Clock,
   Gauge,
   Layers,
   LayoutDashboard,
   LineChart,
   LogOut,
-  Menu,
   Settings as SettingsIcon,
   X,
 } from 'lucide-react'
@@ -23,6 +24,8 @@ const NAV_ITEMS = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard, end: true },
   { to: '/planner', label: 'Trade Planner', icon: Calculator },
   { to: '/journal', label: 'Journal', icon: ClipboardCheck, badge: 'trades' },
+  { to: '/sessions', label: 'Sessions', icon: Clock },
+  { to: '/events', label: 'Critical Events', icon: AlertTriangle },
   { to: '/analytics', label: 'Analytics', icon: BarChart3 },
   { to: '/levels', label: 'Key Levels', icon: Layers },
   { to: '/routines', label: 'Routines', icon: Gauge, badge: 'routine' },
@@ -46,7 +49,7 @@ export default function Sidebar() {
 
   const content = (
     <div className="flex h-full flex-col bg-panel">
-      <div className="flex items-center justify-between border-b border-border px-5 py-4">
+      <div className="flex items-center justify-between border-b border-border px-5 py-4 md:hidden">
         <div className="flex items-center gap-2">
           <div className="flex h-7 w-7 items-center justify-center rounded-md bg-accent text-sm font-bold text-white">
             T
@@ -55,37 +58,14 @@ export default function Sidebar() {
         </div>
         <button
           type="button"
-          className="rounded p-1 text-text-dim hover:text-text md:hidden"
+          className="rounded p-1 text-text-dim hover:text-text"
           onClick={() => setSidebarOpen(false)}
         >
           <X size={18} />
         </button>
       </div>
 
-      <div className="px-4 pt-4">
-        <div className="grid grid-cols-2 gap-1 rounded-md bg-panel-2 p-1">
-          <button
-            type="button"
-            onClick={() => setAccountType('demo')}
-            className={`rounded px-2 py-1.5 text-xs font-semibold transition-colors ${
-              accountType === 'demo' ? 'bg-accent text-white' : 'text-text-dim hover:text-text'
-            }`}
-          >
-            DEMO
-          </button>
-          <button
-            type="button"
-            onClick={() => setAccountType('live')}
-            className={`rounded px-2 py-1.5 text-xs font-semibold transition-colors ${
-              accountType === 'live' ? 'bg-loss text-white' : 'text-text-dim hover:text-text'
-            }`}
-          >
-            LIVE
-          </button>
-        </div>
-      </div>
-
-      <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
+      <nav className="flex-1 space-y-1 overflow-y-auto px-3 pt-4">
         {NAV_ITEMS.map((item) => (
           <NavLink
             key={item.to}
@@ -120,13 +100,6 @@ export default function Sidebar() {
 
       <div className="border-t border-border px-4 py-4">
         <div className="mb-3 flex items-center justify-between">
-          <span
-            className={`mono rounded px-2 py-0.5 text-[10px] font-bold ${
-              accountType === 'demo' ? 'bg-accent/15 text-accent' : 'bg-loss/15 text-loss'
-            }`}
-          >
-            {accountType.toUpperCase()} MODE
-          </span>
           <span className="mono text-sm font-semibold text-text">
             {balance != null ? formatCurrency(balance) : '—'}
           </span>
@@ -148,14 +121,6 @@ export default function Sidebar() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setSidebarOpen(true)}
-        className="fixed left-3 top-3 z-30 rounded-md border border-border bg-panel p-2 text-text md:hidden"
-      >
-        <Menu size={18} />
-      </button>
-
       <aside className="hidden w-64 shrink-0 border-r border-border md:block">{content}</aside>
 
       {sidebarOpen && (
