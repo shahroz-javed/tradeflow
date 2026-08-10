@@ -1,0 +1,76 @@
+Plan before trade: [pre-trade]
+Define entry and exit before entering
+Know when NOT to trade
+Set max risk and profit target upfront
+
+Control reaction: [mindset]
+Market is uncontrollable — accept it
+Plan response if trade goes well
+Plan response if trade goes badly
+
+
+Position sizing: [risk]
+Always run risk analysis first
+No excitement, no fear — it's just a trade
+Size based on rules, not feelings
+
+
+
+Accept losses: [discipline]
+Losses are part of trading
+Cut losses early — never let them grow
+
+When in profit: [patience]
+Don't close out of fear — wait for the move
+Let winners run, book big profits
+
+
+
+Wrong thinking: [avoid]
+No strategy changes after a few losses
+No revenge/emotional trading
+No constant system-switching
+
+
+
+
+Long-term goal: [focus]
+Think in 1,000 trades, not 1
+Follow rules in every single trade
+Keep the process simple
+
+
+Never lose your capital:
+Capital is what keeps you in the game
+Opportunities always come back — you must be there
+
+
+
+
+╔══════════════════════════════════════════════╗
+║           PRE-TRADE CHECKLIST                ║
+╚══════════════════════════════════════════════╝
+
+📋 PLAN
+  [ ] Entry price defined
+  [ ] Exit (target) price defined
+  [ ] Stop-loss level set
+  [ ] Risk/reward ratio acceptable (min 1:2)
+
+⚖️ RISK & POSITION SIZE
+  [ ] Position size calculated — not guessed
+  [ ] Max loss is within my risk limit
+
+🧠 MINDSET
+  [ ] I am calm — no excitement, no fear
+  [ ] This trade follows my strategy — not chasing
+
+🚫 BLOCKERS (if any YES → do not trade)
+  [ ] Trying to recover a previous loss?
+  [ ] Deviating from strategy out of emotion?
+
+──────────────────────────────────────────────
+VERDICT:
+  All 8 checks ✓ + 0 blockers = TRADE
+  Any blocker ✓ = DO NOT TRADE
+──────────────────────────────────────────────

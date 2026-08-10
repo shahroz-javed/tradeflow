@@ -1,0 +1,30 @@
+CEST Framework [A Trader personal not global]:
+    Conditions → confluence (trend + S/R Zone + fresh supply/demand zone on HTF + price action + indicator)
+    Entry → confirmation (candlestick / pattern)
+    Stop Loss → beyond structure (not random)
+    Target → next liquidity / S&R level
+
+bullish entry:
+    1. Uptrend on higher timeframe (H4/Daily)
+    2. Price pulls back to S/R zone
+    3. Zone aligns with 38.2–61.8 fabonachi retracement
+    4. Hammer candle forms at zone
+    5. Next candle closes bullish (confirmation) [green candle]
+    6. Enter on confirmation candle close
+    7. SL below the hammer wick (beyond structure)
+    8. TP at next resistance / liquidity level
+
+use fabonachi for identify hammer candle [entire body should above 38.20 fabonaccie retracement]
+
+
+Bearish entry full checklist:
+  1. Downtrend on higher timeframe (H4/Daily)
+  2. Price pulls back to resistance zone
+  3. Zone aligns with 38.2–61.8 fib retracement
+  4. Shooting star forms at zone
+  5. Next candle closes bearish (confirmation)
+  6. Enter on confirmation candle close
+  7. SL above shooting star wick
+  8. TP at next support / liquidity levels
+
+use fabonachi for identify shooting star candle [entire body should under 38.20 fabonaccie retracement]

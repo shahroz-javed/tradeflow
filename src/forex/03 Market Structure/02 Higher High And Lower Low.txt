@@ -1,0 +1,2 @@
+uptrend: higher highs and higher lows
+downtrend: lower lows and lower highs

@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeft, Check, Pencil, Trash2, X } from 'lucide-react'
 import ConfirmDialog from '../components/ConfirmDialog'
 import { DirectionBadge, ResultBadge } from '../components/TradeTable'
-import { PRE_TRADE_CHECKLIST } from './TradeForm'
+import { POST_ENTRY_DEVIATIONS, PRE_TRADE_CHECKLIST } from './TradeForm'
 import { useAppStore } from '../store/useAppStore'
 import { deleteTrade, subscribeTrade } from '../firebase/trades'
 import { formatCurrency, formatDate, formatRR, pairLabel, pnlColorClass } from '../utils/formatters'
@@ -51,6 +51,8 @@ export default function TradeDetail() {
   }
 
   const checklist = trade.preTradeChecklist || {}
+  const deviations = trade.postEntryDeviations || {}
+  const brokenDeviations = POST_ENTRY_DEVIATIONS.filter((item) => deviations[item.key])
 
   return (
     <div className="space-y-6">
@@ -168,6 +170,25 @@ export default function TradeDetail() {
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="card">
+        <h2 className="mb-3 text-sm font-semibold text-text">Post-Entry Deviation</h2>
+        {brokenDeviations.length === 0 ? (
+          <div className="flex items-center gap-2 text-sm text-profit">
+            <Check size={15} className="shrink-0" />
+            None reported — plan followed through to close.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {brokenDeviations.map((item) => (
+              <div key={item.key} className="flex items-center gap-2 text-sm">
+                <X size={15} className="shrink-0 text-loss" />
+                <span className="text-text-dim">{item.label}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <ConfirmDialog

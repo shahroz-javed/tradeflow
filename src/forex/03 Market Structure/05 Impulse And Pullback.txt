@@ -1,0 +1,6 @@
+impulse:
+    is the strong, fast move in the trend's direction — long candles, steep angle, like sprinting uphill.
+
+
+pullback (or retracement):
+    is the brief pause/breather against the trend — short, choppy candles, like stopping to catch your breath before continuing uphill.

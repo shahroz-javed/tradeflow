@@ -29,6 +29,13 @@ export const PRE_TRADE_CHECKLIST = [
   { key: 'noNews', label: 'No major news in next 30 minutes' },
 ]
 
+export const POST_ENTRY_DEVIATIONS = [
+  { key: 'movedSL', label: 'Moved stop loss after entry' },
+  { key: 'movedTP', label: 'Moved take profit after entry' },
+  { key: 'addedToLoser', label: 'Added to a losing position' },
+  { key: 'closedEarlyFear', label: 'Closed early out of fear' },
+]
+
 const emptyForm = {
   date: todayISO(),
   type: 'demo',
@@ -45,6 +52,7 @@ const emptyForm = {
   pnl: '',
   actualRR: '',
   rulesFollowed: false,
+  postEntryDeviations: {},
   whyEntered: '',
   emotions: '',
   mistakes: '',
@@ -62,6 +70,7 @@ export default function TradeForm() {
 
   const [form, setForm] = useState({ ...emptyForm, type: accountType })
   const [checklist, setChecklist] = useState({})
+  const [deviations, setDeviations] = useState({})
   const [loading, setLoading] = useState(isEdit)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
@@ -79,6 +88,7 @@ export default function TradeForm() {
         if (trade) {
           setForm({ ...emptyForm, ...trade })
           setChecklist(trade.preTradeChecklist || {})
+          setDeviations(trade.postEntryDeviations || {})
           setScreenshotPreview(trade.screenshotUrl || '')
           setExitScreenshotPreview(trade.exitScreenshotUrl || '')
         }
@@ -130,6 +140,7 @@ export default function TradeForm() {
   }, [form.pair, form.entry, form.stopLoss, form.takeProfit])
 
   const allChecked = PRE_TRADE_CHECKLIST.every((item) => checklist[item.key])
+  const hasDeviation = POST_ENTRY_DEVIATIONS.some((item) => deviations[item.key])
 
   function updateField(field, value) {
     setForm((f) => ({ ...f, [field]: value }))
@@ -137,6 +148,10 @@ export default function TradeForm() {
 
   function toggleChecklistItem(key) {
     setChecklist((c) => ({ ...c, [key]: !c[key] }))
+  }
+
+  function toggleDeviation(key) {
+    setDeviations((d) => ({ ...d, [key]: !d[key] }))
   }
 
   function handleFileChange(e) {
@@ -183,8 +198,9 @@ export default function TradeForm() {
         plannedRR,
         actualRR: Number(form.actualRR) || 0,
         pnl: Number(form.pnl) || 0,
-        rulesFollowed: true,
+        rulesFollowed: allChecked && !hasDeviation,
         preTradeChecklist: checklist,
+        postEntryDeviations: deviations,
       }
 
       let tradeId = id
@@ -418,10 +434,12 @@ export default function TradeForm() {
             <div>
               <label className="label">Rules Followed</label>
               <div className="rounded-md border border-border bg-panel-2 px-3 py-2 text-sm text-text-dim">
-                {allChecked ? (
-                  <span className="font-semibold text-profit">YES — all checklist items confirmed</span>
+                {allChecked && !hasDeviation ? (
+                  <span className="font-semibold text-profit">YES — checklist complete, no deviations</span>
+                ) : !allChecked ? (
+                  <span>Will be set to YES once the pre-trade checklist below is complete</span>
                 ) : (
-                  <span>Will be set to YES automatically once the checklist below is complete</span>
+                  <span className="font-semibold text-loss">NO — post-entry deviation reported below</span>
                 )}
               </div>
             </div>
@@ -535,6 +553,29 @@ export default function TradeForm() {
                 label={item.label}
                 checked={!!checklist[item.key]}
                 onChange={() => toggleChecklistItem(item.key)}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="card space-y-3">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-text">Post-Entry Deviation</h2>
+            <span className={`mono text-xs ${hasDeviation ? 'text-loss' : 'text-text-dim'}`}>
+              {POST_ENTRY_DEVIATIONS.filter((i) => deviations[i.key]).length}/{POST_ENTRY_DEVIATIONS.length}
+            </span>
+          </div>
+          <p className="text-xs text-text-dim">
+            Be honest — did you deviate from your plan after entering? Checking any of these marks this trade as
+            rules-broken, even if the pre-trade checklist was complete.
+          </p>
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {POST_ENTRY_DEVIATIONS.map((item) => (
+              <ChecklistItem
+                key={item.key}
+                label={item.label}
+                checked={!!deviations[item.key]}
+                onChange={() => toggleDeviation(item.key)}
               />
             ))}
           </div>

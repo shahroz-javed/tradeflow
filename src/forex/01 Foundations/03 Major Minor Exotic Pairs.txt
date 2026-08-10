@@ -1,0 +1,35 @@
+1. Major Pairs
+    These contain USD and are the most traded pairs in the world.
+    EUR/USD
+    GBP/USD
+    USD/JPY
+
+    Characteristics:
+        Highest liquidity
+        Lowest spreads
+        Easier to enter/exit trades
+        Best for beginners
+
+2. Minor Pairs (Cross Pairs)
+    These do not contain USD but are made from major currencies.
+    GBP/JPY
+    EUR/JPY
+    EUR/GBP
+
+    Characteristics:
+        Good liquidity
+        Slightly larger spreads than majors
+        Often move differently from USD pairs
+
+3. Exotic Pairs
+    One major currency paired with a currency from an emerging economy.
+
+    USD/TRY (Turkish Lira)
+    USD/MXN (Mexican Peso)
+    USD/ZAR (South African Rand)
+
+    Characteristics:
+        Wide spreads
+        Lower liquidity
+        More volatile
+        Can have large overnight swap charges

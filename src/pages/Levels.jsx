@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { ArrowDown, ArrowUp, Plus, Trash2 } from 'lucide-react'
+import { ArrowDown, ArrowUp, History, Plus, Trash2 } from 'lucide-react'
 import { PairTabs } from '../components/PairSelector'
+import LevelHistoryPanel from '../components/LevelHistoryPanel'
 import { useLevels } from '../hooks/useLevels'
 import { useAppStore } from '../store/useAppStore'
 import { checkBreak, distanceInPips, rangeSize } from '../utils/levelMetrics'
@@ -139,6 +140,7 @@ function ZoneList({ zones, onDelete, tint }) {
 
 export default function Levels() {
   const [pair, setPair] = useState('EURUSD')
+  const [showHistory, setShowHistory] = useState(false)
   const { levels, loading, saving, updateLevels, previousDay, previousWeek } = useLevels(pair)
   const profile = useAppStore((s) => s.profile)
 
@@ -176,10 +178,18 @@ export default function Levels() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-semibold text-text">Key Levels</h1>
-        {saving && <span className="text-xs text-text-dim">Saving…</span>}
+        <div className="flex items-center gap-3">
+          {saving && <span className="text-xs text-text-dim">Saving…</span>}
+          <button type="button" onClick={() => setShowHistory(true)} className="btn-secondary">
+            <History size={15} />
+            View History
+          </button>
+        </div>
       </div>
 
       <PairTabs value={pair} onChange={setPair} />
+
+      {showHistory && <LevelHistoryPanel pair={pair} onClose={() => setShowHistory(false)} />}
 
       {loading ? (
         <div className="card py-12 text-center text-sm text-text-dim">Loading…</div>

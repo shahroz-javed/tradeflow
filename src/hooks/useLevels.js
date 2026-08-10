@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { DEFAULT_LEVELS, saveLevels, subscribeLevels } from '../firebase/levels'
-import { fetchLatestLevelHistory, saveLevelHistoryRecord } from '../firebase/levelHistory'
+import { fetchLatestLevelHistory, fetchLevelHistoryList, saveLevelHistoryRecord } from '../firebase/levelHistory'
 import { useAppStore } from '../store/useAppStore'
 import { currentWeekId, todayISO } from '../utils/formatters'
 

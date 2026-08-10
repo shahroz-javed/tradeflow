@@ -1,0 +1,21 @@
+track changes to your system over time
+only update when you deliberately change a rule
+not for daily notes — for system evolution
+
+v1.0 — [date you start demo trading]
+    initial rules established
+    trading: EURUSD, GBPUSD, USDJPY, XAUUSD
+    risk: 2% per trade
+    setups: S/R pullback + supply/demand reaction
+    status: demo trading
+
+v1.1 — [date]
+    [what changed and why]
+
+v2.0 — [date you go live]
+    [notes on transition to live account]
+
+NOTE:
+    never delete old versions — keep all history
+    change a rule only after 20+ trades of evidence
+    not after 1 bad day

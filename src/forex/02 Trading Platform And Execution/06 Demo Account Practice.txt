@@ -1,0 +1,12 @@
+A demo account uses virtual money but real market prices.
+
+Use it to learn:
+    Placing orders.
+    Modifying stop loss and take profit.
+    Managing trades.
+    Testing strategies.
+    Building discipline.
+
+Don't use it to gamble because "it's fake money."
+
+Treat it like a live account.

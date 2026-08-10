@@ -41,3 +41,21 @@ export async function fetchLatestLevelHistory(uid, pair) {
     throw new Error(error.message || 'Failed to load level history.')
   }
 }
+
+/** Fetches the last `count` history records for a pair + period ('daily' | 'weekly'), newest first. */
+export async function fetchLevelHistoryList(uid, pair, period, count = 12) {
+  try {
+    const base = collection(db, 'users', uid, 'levelHistory')
+    const q = query(
+      base,
+      where('pair', '==', pair),
+      where('period', '==', period),
+      orderBy('periodId', 'desc'),
+      limit(count),
+    )
+    const snap = await getDocs(q)
+    return snap.docs.map((d) => ({ id: d.id, ...d.data() }))
+  } catch (error) {
+    throw new Error(error.message || 'Failed to load level history.')
+  }
+}

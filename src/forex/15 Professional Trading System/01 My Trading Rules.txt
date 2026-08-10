@@ -1,0 +1,27 @@
+these are non-negotiable rules — breaking any = close platform
+
+BEFORE ANY TRADE:
+    run pre-trade checklist (no exceptions)
+    check higher timeframe direction first
+    identify S/R or supply/demand zone
+    confirm candle signal at zone
+    calculate lot size using trade planner
+
+RISK RULES:
+    max risk per trade: 2% of account
+    max trades per day: 2-3 (no more)
+    if 2 losses in a row → stop trading that day
+    never move stop loss further away
+    never add to a losing trade
+
+MINDSET RULES:
+    if emotional → do not trade
+    if trying to recover a loss → do not trade
+    if market not clear → do not trade (cash is a position)
+    no trading 30 mins before/after major news
+
+EXECUTION RULES:
+    entry only on confirmation candle close
+    SL always placed beyond structure (not random)
+    TP at next S/R or supply/demand zone
+    always use trade planner before entering

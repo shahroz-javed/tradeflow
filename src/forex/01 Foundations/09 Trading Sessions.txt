@@ -1,0 +1,124 @@
+1. Forex Factory        forexfactory.com/calendar    ← most popular
+2. Investing.com        investing.com/economic-calendar
+3. TradingView          tradingview.com/economic-calendar
+4. DailyFX             dailyfx.com/economic-calendar
+
+Rule for you:
+    check economic calendar every day at 1:00 PM PKT
+    before London session opens
+    mark any red news events and avoid 30 mins around them
+
+
+
+London open and Close
+
+NY open and close
+
+
+
+Best trading times:
+
+London Session
+
+New York Session
+
+London–New York Overlap ⭐ (Highest Liquidity)
+
+
+
+
+Weekly dangerous days — general pattern:
+Monday:     usually quiet — market finding direction
+            safe to trade but setups less clean
+
+Tuesday:    moderate — some news possible
+            check calendar
+
+Wednesday:  often has ADP employment, Fed speeches
+            check calendar carefully
+
+Thursday:   often has unemployment claims (check calendar for exact time)
+            moderate danger
+
+Friday:     MOST DANGEROUS
+            NFP first friday of month = avoid entire day
+            other fridays: market closes early
+            After London closes
+            Liquidity drops.
+            Avoid opening new swing trades.
+            Close weak positions before weekend.
+
+
+
+
+
+
+The big news events to always watch:
+EVERY MONTH — mark these dates: [times are not perfect can be change in DayLight Saving]
+IMPORTANT:
+    All PKT times below are approximate.
+    US and UK Daylight Saving Time (DST) changes can shift news and session times by ±1 hour.
+    Always verify today's exact event time using the economic calendar.
+
+NFP (Non-Farm Payrolls)
+    first Friday of every month
+    6:30 PM PKT
+    most volatile event of the month
+    spreads explode, price moves 50-200 pips in seconds
+    DO NOT TRADE
+
+CPI (Inflation data)
+    mid month, usually 2nd week
+    6:30 PM PKT
+    second most important
+
+FOMC (Federal Reserve interest rate decision)
+    8 times per year
+    12:00 AM PKT (midnight)
+    can move market 100-300 pips
+
+GDP
+    quarterly (4 times per year)
+    6:30 PM PKT
+
+Central Bank speeches (Powell etc)
+    random dates, check calendar weekly
+
+PPI
+Core PCE
+Retail Sales
+ISM Manufacturing PMI
+ISM Services PMI
+Unemployment Claims
+GDP
+Interest Rate Decisions
+Powell Speech
+ECB Rate Decision
+BOE Rate Decision
+BOJ Rate Decision
+
+
+
+Major news times:
+    8:30 AM EST  = 6:30 PM PKT   ← most important (NFP, CPI, retail sales)
+   10:00 AM EST  = 8:00 PM PKT   ← ISM, Fed speeches  
+    2:00 PM EST  = 12:00 AM PKT  ← FOMC decisions (midnight next day)
+
+
+📌 Pakistan Time (PKT) Trading Reality
+
+US news mostly hits in Pakistani evening/night:
+    6:30 PM PKT  ← most dangerous time (avoid trading 6-7 PM PKT)
+    8:00 PM PKT  ← secondary news
+    12:00 AM PKT ← FOMC (very late night)
+
+London session PKT times:
+    1:00 PM - 9:00 PM PKT  ← best session for USD pairs
+
+New York session PKT times:
+    6:00 PM - 2:00 AM PKT  ← overlaps London 6-9 PM PKT
+
+London/NY overlap (highest liquidity):
+    6:00 PM - 9:00 PM PKT  ← best time to trade
+    but avoid 6:30 PM PKT on news days
+

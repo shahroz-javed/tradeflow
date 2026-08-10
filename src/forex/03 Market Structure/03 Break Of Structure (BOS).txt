@@ -1,0 +1,14 @@
+Analogy: a runner setting a new personal record
+
+
+If you're in an uptrend and price pushes above the previous Higher High, that's a BOS — it confirms "the trend is still intact, new record set." It's confirmation, not a warning. 
+
+
+In a downtrend, BOS means price breaks below the previous Lower Low — same idea, just downward.
+
+
+
+
+                Direction of break                      What it tells you
+BOSSame         direction as current trend              Trend  continuing — confidence
+CHoCH           Opposite direction of current trend     Trend possibly ending — caution

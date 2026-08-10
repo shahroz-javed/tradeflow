@@ -16,6 +16,9 @@ import Routines from './pages/Routines'
 import WeeklyReview from './pages/WeeklyReview'
 import MonthlyReview from './pages/MonthlyReview'
 import Settings from './pages/Settings'
+import Docs from './pages/Docs'
+import LivePrice from './pages/LivePrice'
+import Transactions from './pages/Transactions'
 import { useAppStore } from './store/useAppStore'
 
 
@@ -61,8 +64,19 @@ export default function App() {
         <Route path="/routines" element={<Routines />} />
         <Route path="/review" element={<WeeklyReview />} />
         <Route path="/review/monthly" element={<MonthlyReview />} />
+        <Route path="/live-price" element={<LivePrice />} />
+        <Route path="/transactions" element={<Transactions />} />
         <Route path="/settings" element={<Settings />} />
       </Route>
+
+      <Route
+        path="/docs"
+        element={
+          <ProtectedRoute>
+            <Docs />
+          </ProtectedRoute>
+        }
+      />
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

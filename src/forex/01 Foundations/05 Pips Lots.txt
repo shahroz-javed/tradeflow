@@ -1,0 +1,88 @@
+what is a pip
+    In JPY pairs a pip is the 2nd decimal place (0.01)
+    In Non JPY most pairs a pip is the 4nd decimal place (0.0001)
+    
+    
+    smallent amount of movement in currency pair
+        1.0787  [4th decimel point i.e 7 in this example is pip]
+        1.0797 market move 10 pip up
+
+Pair types:
+    USD is the quote currency [EUR/USD]  
+        pip size=0.0001
+        Pip value (per standard lot) = Fixed $10 — never changes with price
+
+    USD is the base currency [USD/JPY]   
+        pip size=0.01 for JPY, 0.0001 for others
+        Pip value = (pip size ÷ price) × position size
+
+    
+Lot type    Lot Size        Units(position size)       Pip value [usdjpy]      Pip value [eurusd]
+Standard    1.00            100,000                     $6.25                   $10
+Mini        0.10            10,000                      $0.625                  $1
+Micro       0.01            1,000                       $0.0625                 10 cent
+Nano        0.001           100                         $0.00625                1 cent
+    
+Position size (Units)
+    Units = lot size * 100000
+
+Pip Value [usd quote] =Lot Size×100,000×Pip Size = 0.1 * 100000 * 0.0001  = $1
+
+
+The Universal Formula:
+Pip value = (pip size ÷ price) × position size
+
+Pip Value [usd base] non jpy = 0.0001/price​×100000
+Pip Value [usd base] jpy = 0.01/price​×100000
+At 160.02:
+    1 standard lot (100,000 units) → (0.01 ÷ 160.02) × 100,000 = $6.25 per pip
+    1 mini lot (10,000 units) → $0.625 per pip
+    1 micro lot (1,000 units) → $0.0625 per pip
+
+
+Easy Formula
+Your Pip Value = Standard Lot Pip Value × Lot Size = $10 * 0.01 = $0.1
+
+
+calculate gain or loss:
+    1.0802
+    1.0902
+
+    standard lot example:
+        amount of pip * pip value * lot size = 100 * 10 * 1 = 1000$
+
+Risk Amount = Balance × Risk%
+
+Margin = Position size ÷ Leverage = 3,200 ÷ 4,000 = $0.80
+Free margin remaining = $200 − $0.80 = $199.20
+
+
+
+
+
+Gold (XAU/USD) — skip pips entirely, think in dollars
+XAU/USD
+    In gold trading, “1 cent” usually means 0.01 lot, not one cent dollar.
+
+Lot                 Ounces      $1 move =
+Standard (1.0)      100 oz      $100
+Mini (0.1)          10 oz       $10
+Micro (0.01)        1           oz$1
+
+
+Profit = $10 move × 1 oz = $10  [for micro lot]
+Ounces = Risk Amount ÷ (stop-loss in $)
+Lots = Ounces ÷ 100
+
+
+
+
+
+
+
+Steps for taking a trade:
+Chart pe entry + SL decide karo (technical analysis — risk se related nahi)
+SL distance nikal lo (entry − SL)
+Risk Amount = Balance × Risk%
+Pip value per lot = pair table se lookup
+Lots = Risk Amount ÷ (SL distance × pip value)      [this is lot size i need to buy]

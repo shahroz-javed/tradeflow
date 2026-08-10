@@ -12,15 +12,18 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import { AlertTriangle, Percent, ShieldCheck, TrendingUp, Wallet } from 'lucide-react'
+import { AlertTriangle, Percent, ShieldCheck, TrendingDown, TrendingUp, Wallet } from 'lucide-react'
 import StatCard from '../components/StatCard'
 import TradeTable from '../components/TradeTable'
 import ChecklistItem from '../components/ChecklistItem'
 import { useAppStore, ALL_INSTRUMENTS } from '../store/useAppStore'
 import { useTrades, computeStats } from '../hooks/useTrades'
+import { useTransactions } from '../hooks/useTransactions'
+import { computeLifetimeStats } from '../utils/lifetimeStats'
 import { useRoutines, ROUTINE_CHECKLIST } from '../hooks/useRoutines'
 import { formatCurrency, formatPercent, pairLabel, pnlColorClass, weekRange } from '../utils/formatters'
 import { computeStreaks } from '../utils/streaks'
+import { computeDrawdown } from '../utils/drawdown'
 import { deleteTrade } from '../firebase/trades'
 import { useState } from 'react'
 import ConfirmDialog from '../components/ConfirmDialog'
@@ -44,6 +47,7 @@ export default function Dashboard() {
   const profile = useAppStore((s) => s.profile)
   const currentUser = useAppStore((s) => s.user)
   const { trades, loading } = useTrades()
+  const { allTransactions } = useTransactions()
   const { routine, completedCount, total } = useRoutines()
   const [deleteTarget, setDeleteTarget] = useState(null)
   const { london, newyork, asian, overlap, sessions, activeSessionTheme } = useSessions()
@@ -82,6 +86,10 @@ export default function Dashboard() {
   }, [events])
 
   const balance = accountType === 'demo' ? profile?.demoBalance : profile?.liveBalance
+  const lifetimeStats = useMemo(
+    () => computeLifetimeStats(allTransactions, accountType, balance),
+    [allTransactions, accountType, balance],
+  )
 
   const weekStats = useMemo(() => {
     const { start, end } = weekRange()
@@ -96,6 +104,9 @@ export default function Dashboard() {
 
   const streaks = useMemo(() => computeStreaks(trades), [trades])
   const showLossStreakWarning = streaks.current.type === 'loss' && streaks.current.count >= 2
+
+  const drawdown = useMemo(() => computeDrawdown(trades), [trades])
+  const showDrawdownWarning = drawdown.currentDrawdownPct >= 10
 
   const recentTrades = trades.slice(0, 5)
 
@@ -165,15 +176,41 @@ export default function Dashboard() {
         </div>
       )}
 
+      {showDrawdownWarning && (
+        <div className="flex items-start gap-3 rounded-md border border-loss/30 bg-loss/10 px-4 py-3">
+          <TrendingDown size={18} className="mt-0.5 shrink-0 text-loss" />
+          <div className="text-sm text-text">
+            <span className="font-semibold text-loss">
+              {drawdown.currentDrawdownPct.toFixed(1)}% drawdown from your peak.
+            </span>{' '}
+            You&apos;re {formatCurrency(drawdown.currentDrawdownAmount)} below your all-time high cumulative P&amp;L.
+            Consider reducing size until you&apos;re back near the peak.
+          </div>
+        </div>
+      )}
+
       <GoalsPanel />
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
         <StatCard
           label="Account Balance"
           value={balance != null ? formatCurrency(balance) : '—'}
           subValue={accountType.toUpperCase()}
           icon={Wallet}
         />
+        {lifetimeStats.netDeposited > 0 && (
+          <StatCard
+            label="Lifetime Gain/Loss"
+            value={formatCurrency(lifetimeStats.lifetimeGainLoss, { showSign: true })}
+            subValue={
+              <Link to="/transactions" className="hover:underline">
+                {formatPercent(lifetimeStats.lifetimeReturnPct)} vs. deposited
+              </Link>
+            }
+            valueClassName={pnlColorClass(lifetimeStats.lifetimeGainLoss)}
+            icon={Wallet}
+          />
+        )}
         <StatCard
           label="This Week P&L"
           value={formatCurrency(weekStats.totalPnl, { showSign: true })}
@@ -193,6 +230,19 @@ export default function Dashboard() {
           subValue="This week"
           valueClassName={weekStats.ruleFollowRate >= 80 ? 'text-profit' : 'text-warning'}
           icon={ShieldCheck}
+        />
+        <StatCard
+          label="Drawdown"
+          value={formatPercent(drawdown.currentDrawdownPct)}
+          subValue={`Max: ${formatPercent(drawdown.maxDrawdownPct)}`}
+          valueClassName={
+            drawdown.currentDrawdownPct >= 10
+              ? 'text-loss'
+              : drawdown.currentDrawdownPct > 0
+                ? 'text-warning'
+                : 'text-profit'
+          }
+          icon={TrendingDown}
         />
       </div>
 

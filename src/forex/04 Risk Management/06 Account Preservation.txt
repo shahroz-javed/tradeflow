@@ -1,0 +1,6 @@
+This ties everything together — it's the "why" behind every rule above. Your capital is your business's only asset. Lose it, and you're out of the game entirely; opportunities mean nothing if you have no capital left to act on them.
+
+
+
+Position size (Units)
+Units = lot size * 100000

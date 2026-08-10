@@ -1,0 +1,33 @@
+BASE  = the currency you're BUYING or SELLING (always 1 unit)
+QUOTE = the currency you're PAYING WITH (the price)
+        It is the currency used to value the base
+        It tells you the price of 1 base currency
+
+        Example price of 1 USD:
+            BUY  (they buy your USD):  PKR 277
+            SELL (they sell you USD):  PKR 280
+
+
+EUR/USD
+    EUR = Base currency
+    USD = Quote currency
+
+
+    
+You are always trading the BASE currency, and the QUOTE currency is just the pricing unit.
+
+
+Simple example
+    EUR/USD = 1.1000
+
+    This means:
+    1 EUR = 1.10 USD
+
+    Now:
+        If you BUY EUR/USD:
+        You are buying EUR
+        And selling USD
+
+        If you SELL EUR/USD:
+        You are selling EUR
+        And buying USD

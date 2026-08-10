@@ -1,0 +1,58 @@
+📌 What Is Spread?
+    Spread = Ask price − Bid price
+    It is the broker’s compensation (in spread-based accounts).
+    Some brokers offer:
+        Fixed spread
+        Variable spread
+        Raw spread + commission model
+    Higher spread = higher transaction cost.
+
+Every trade costs you the spread before it starts
+
+
+Broker shows:
+  Bid (sell price): 1.08000
+  Ask (buy price):  1.08003
+  Spread = 3 pips
+
+When you BUY:
+  you buy at Ask (1.08003)
+  your trade immediately shows -3 pips (the spread)
+  price must move 3 pips in your favor just to break even
+
+This is why:
+  your SL should account for the spread
+  very tight SLs are risky (spread eats into them)
+  trading during low liquidity = wider spreads = higher cost
+
+
+
+📌 When Spreads Widen|increases during:
+    Major news releases
+    Market open/close volatility
+    Low liquidity sessions
+    Session overlaps ending
+    Rollover time (around 5 PM EST)
+
+📌 Practical Trading Rules
+    ✔ Trade higher timeframes when possible
+    ✔ Avoid trading during major news events
+        Major news times (EST):
+            8:30 AM EST  ← most important (NFP, CPI, retail sales)
+            10:00 AM EST ← ISM, Fed speeches
+            2:00 PM EST  ← FOMC decisions
+
+        ✔ Avoid trading 5 mins before and after high-impact news
+        check economic calendar daily for exact times
+        most dangerous: 8:30 AM EST (US session open news)
+    ✔ Prefer high-liquidity pairs (e.g., majors) has low spread
+    ✔ Check average spread before choosing a pair
+    ✔ Consider commission-based raw spread accounts for scalping
+    ✔ Always factor spread into stop loss and take profit placement
+
+
+
+Spread Affects:
+    1. Stop Loss Gets Hit Early / Target Not Filled
+    2. Spread Impact Highly on Small [A 3-pip spread on a 10-pip target = 30% cost]
+    3. Low on Large Targets [3 pips on 80 pips target = negligible]

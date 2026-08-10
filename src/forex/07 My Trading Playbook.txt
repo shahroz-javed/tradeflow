@@ -1,0 +1,30 @@
+these are the ONLY setups i trade — nothing else
+
+SETUP 1: Trend Continuation Pullback (highest probability)
+    timeframe: H1 entry, H4 bias
+    condition: clear uptrend or downtrend on H4
+    zone: price pulls back to trend continuation S/R zone
+    entry: hammer (long) or shooting star (short) at zone
+    confirmation: next candle closes in trade direction
+    fib: candle body within 38.2-61.8 retracement
+    SL: beyond zone (below demand / above supply)
+    TP: previous high (long) or previous low (short)
+    R:R: minimum 1:2
+
+SETUP 2: Supply/Demand Zone Reaction (fresh zones only)
+    timeframe: H1 entry, H4 zone
+    condition: fresh zone (first or second touch)
+    zone: RBR/DBR (demand) or DBD/RBD (supply)
+    entry: confirmation candle at zone edge
+    SL: beyond zone bottom/top
+    TP: next opposing zone
+    R:R: minimum 1:2
+
+SETUP 3: (leave empty — add after demo experience)
+
+DO NOT TRADE:
+    choppy/ranging market with no clear structure
+    during high-impact news
+    when no clear zone is visible
+    when R:R is less than 1:2
+    counter-trend without reversal confirmation

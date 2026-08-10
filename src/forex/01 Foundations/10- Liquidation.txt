@@ -1,0 +1,2 @@
+Liquidation = When broker forcefully closes your trade because your margin is gone.
+It happens when losses eat your deposit.

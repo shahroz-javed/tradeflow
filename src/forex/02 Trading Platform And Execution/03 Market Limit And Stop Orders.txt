@@ -1,0 +1,68 @@
+Market Order
+    "I want in now."
+
+Example:
+
+EUR/USD
+
+Current Ask:
+
+1.1000
+
+Click Buy.
+
+Trade opens immediately around 1.1000 (subject to spread/slippage).
+
+Buy Limit
+    "I want to buy cheaper."
+
+    Current:
+    Price = 1.1000
+    You expect a pullback.
+
+    Place:
+    Buy Limit = 1.0970
+    Only executes if price falls to 1.0970.
+
+
+Sell Limit
+    Current:
+    1.1000
+    Expect a rise before falling.
+    Place:
+    Sell Limit = 1.1030
+    Executes only if price rises to 1.1030.
+
+
+
+Buy Stop
+    You want to buy only after price breaks resistance.
+
+    Current:
+    1.1000
+    Resistance:
+    1.1020
+    Place:
+    Buy Stop = 1.1022
+    If price breaks above resistance, the order activates.
+
+Sell Stop
+    Current:
+    1.1000
+    Support:
+    1.0980
+    Place:
+    Sell Stop = 1.0978
+    Executes only if price breaks below support.
+
+
+
+
+| Order       | Location            |
+| ----------- | ------------------- |
+| Buy Market  | Current price       |
+| Sell Market | Current price       |
+| Buy Limit   | Below current price |
+| Sell Limit  | Above current price |
+| Buy Stop    | Above current price |
+| Sell Stop   | Below current price |

@@ -1,0 +1,14 @@
+Position size answers:
+    How large should my trade be?
+
+
+
+If your stop loss is 20 pips away, you calculate a lot size that equals a $2 loss if the stop is hit.
+This is why position size depends on your stop loss, not the other way around.
+
+
+The sequence is:
+    Find your trade setup.
+    Decide where the stop loss belongs based on the chart.
+    Decide your acceptable risk (e.g., 1–2%).
+    Calculate the lot size.

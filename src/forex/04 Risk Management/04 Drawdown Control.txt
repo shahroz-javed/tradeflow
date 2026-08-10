@@ -1,0 +1,9 @@
+Set hard limits: e.g., stop trading for the day after losing 4% of your account, stop for the week after 8%. The math behind why this is critical is brutal — recovering from a drawdown requires a disproportionately larger gain:
+Drawdown    Gain needed to recover
+10%         11%
+20%         25%
+50%         100%
+80%         400%
+
+
+This is why protecting capital isn't just a "nice idea" — it's mathematically the most important thing you do.

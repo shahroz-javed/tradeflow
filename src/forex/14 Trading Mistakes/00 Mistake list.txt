@@ -1,0 +1,18 @@
+❌ Market order during news
+   spread explodes to 20-30 pips instantly you enter at terrible price
+
+❌ Wrong lot size
+   panic, type wrong number, risk 10x more than planned
+   always use trade planner BEFORE touching the order form
+
+❌ Forget to set SL [before entry]
+
+❌ Chasing price
+   missed entry at zone → price moved → enter anyway
+   now you're entering at a worse price with smaller SL room
+   if you miss it → let it go, next setup will come
+
+
+❌ Moving SL during trade [away keep looser running]
+
+❌ Closing too early [take less profit in Fear]

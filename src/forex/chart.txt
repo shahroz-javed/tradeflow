@@ -1,0 +1,19 @@
+What to actually look at when watching charts
+1. Trend
+2. Support & Resistance
+3. Candle behavior
+4. Volume
+
+You're training your eyes to notice patterns that repeat. Things like:
+Price goes up strong → then pulls back a little → then goes up again
+Price hits a certain level → bounces back every time
+Big candle appears → next candles slow down
+After 30 days of watching, these patterns start to feel familiar. That's "absorbing the market."
+
+questions to ask your self:
+What direction is price moving?
+Is it moving with strength or weakness?
+Where is price likely to go next?
+Where is price right now?
+What did price do at this level before?
+Is this an uptrend, downtrend, or sideways?

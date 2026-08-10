@@ -1,0 +1,36 @@
+do this every friday or saturday — takes 30 mins
+
+TRADE STATISTICS:
+    total trades this week:
+    winning trades:
+    losing trades:
+    win rate: (wins ÷ total × 100)
+    average R:R achieved:
+    total P&L this week: $
+    account balance:
+
+RULE FOLLOWING:
+    did i follow entry checklist every trade? (yes/no)
+    did i respect daily loss limit? (yes/no)
+    did i revenge trade? (yes/no)
+    did i move SL against rules? (yes/no)
+    did i overtrade? (yes/no)
+    discipline score (1-10):
+
+BEST TRADE THIS WEEK:
+    pair:
+    why it was good:
+    what i did right:
+
+WORST TRADE THIS WEEK:
+    pair:
+    what went wrong:
+    was it a rule break? (yes/no)
+    what to do differently:
+
+FOCUS FOR NEXT WEEK:
+    one thing to improve:
+    one rule to reinforce:
+
+NOTES:
+    (free space for observations, patterns noticed, etc.)

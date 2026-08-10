@@ -1,0 +1,27 @@
+Think of it like a city map. Weekly levels are the main highways. Daily levels are the streets. You need to know where the highways are before navigating the streets.
+
+
+Weekly High/Low:
+    highest and lowest price reached this week
+    major institutions watch these levels
+    price respecting or breaking these = big signal
+
+Daily High/Low:
+    highest and lowest price reached today/yesterday
+    yesterday's high and low are most important
+    price breaking yesterday's high = bullish momentum
+    price breaking yesterday's low = bearish momentum
+
+Previous Close:
+    where price closed last day/week
+    acts as a reference point for bias
+
+
+
+Why these levels matter
+    Banks and institutions plan trades on Daily/Weekly charts
+    They place orders at these obvious levels
+    When price reaches weekly high → big sellers likely waiting
+    When price reaches weekly low → big buyers likely waiting
+    These are NOT random — they are the most watched
+    levels in the entire market

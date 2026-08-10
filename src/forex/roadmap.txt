@@ -1,0 +1,159 @@
+﻿
+forex/
+├── [Yes] 00 Beginner Mindset/
+│   ├── [Yes] 01 Expectations.txt
+│   ├── [Yes] 02 Reality Of Forex.txt
+│   └── [Yes] 03 Risk Of Losing Money.txt
+│
+├── [No] 01 Foundations/
+│   ├── [No] 01 What Is Forex.txt
+│   ├── [No] 02 How The Forex Market Works.txt
+│   ├── [No] 03 Major Minor Exotic Pairs.txt
+│   ├── [No] 04 Base And Quote Currency.txt
+│   ├── [Yes] 05 Pips Lots Spread.txt
+│   ├── [Yes] 06 Leverage And Margin.txt
+│   ├── [No] 07 Bid Ask And Slippage.txt
+│   ├── [No] 08 Spread.txt
+│   ├── [No] 09 Trading Sessions.txt
+│   └── [No] 10 Liquidation.txt
+│
+├── [Yes] 02 Trading Platform And Execution/
+│   ├── [Yes] 00 What is Execution.txt
+│   ├── [Yes] 01 Broker Basics.txt
+│   ├── [Yes] 02 Order Types.txt
+│   ├── [Yes] 03 Market Limit And Stop Orders.txt
+│   ├── [Yes] 04 Stop Loss And Take Profit.txt
+│   ├── [Yes] 05 Position Size Basics.txt
+│   └── [Yes] 06 Demo Account Practice.txt
+│   └── [Yes] 07 Slippage.txt
+│   └── [Yes] 08 Spread — the hidden cost of execution.txt
+│
+├── [Yes] 03 Market Structure/
+│   ├── [Yes] 01 Trends And Ranges.txt
+│   ├── [No] 02 Higher High And Lower Low.txt
+│   ├── [No] 03 Break Of Structure (BOS).txt
+│   ├── [No] 04 Change Of Character (CHoCH).txt
+│   ├── [No] 05 Impulse And Pullback.txt
+│   ├── [No] 06 Timeframe Context.txt
+│   └── [No] 07 How These Six Concepts Work Together.txt
+│
+├── [Yes] 04 Risk Management/
+│   ├── [Yes] 01 Risk Per Trade.txt
+│   ├── [No] 02 Risk Reward.txt
+│   ├── [Yes] 03 Position Sizing.txt
+│   ├── [No] 04 Drawdown Control.txt
+│   ├── [No] 05 Overtrading.txt
+│   └── [No] 06 Account Preservation.txt
+│
+├── [No] 05 Key Price Areas/
+|   |   [No] 00 CEST Framework.txt
+│   ├── [No] 01 Support And Resistance Basics.txt
+│   ├── [No] 02 Supply And Demand Intro.txt
+│   ├── [No] 03 Role Reversal.txt
+│   ├── [No] 04 Swing Highs And Lows.txt
+│   └── [No] 05 Daily And Weekly Levels.txt
+│
+├── [No] 06 Price Action/
+│   ├── [No] 01 Candlestick Basics.txt
+│   ├── [No] 02 Rejection Candles.txt
+│   ├── [No] 03 Engulfing Patterns.txt
+│   ├── [No] 04 Consolidation And Breakout.txt
+│   ├── [No] 05 Entry Confirmation.txt
+│   └── [No] 06 Trade Invalidation.txt
+│
+├── [No] 07 Trading Strategies/
+│   ├── [No] 01 Trend Following.txt
+│   ├── [No] 02 Breakout Strategy.txt
+│   ├── [No] 03 Pullback Strategy.txt
+│   ├── [No] 04 Range Trading.txt
+│   ├── [No] 05 Reversal Strategy.txt
+│   └── [No] 06 Strategy Checklist.txt
+│
+├── [No] 08 Backtesting And Demo Practice/
+│   ├── [No] 01 Replay Practice.txt
+│   ├── [No] 02 Backtesting Rules.txt
+│   ├── [No] 03 Sample Trade Plans.txt
+│   ├── [No] 04 Demo Trading Routine.txt
+│   └── [No] 05 Forward Testing.txt
+│
+├── [No] 09 Journaling And Review/
+│   ├── [No] 01 Trade Log.txt
+│   ├── [No] 02 Screenshot Review.txt
+│   ├── [No] 03 Mistakes Log.txt
+│   ├── [No] 04 Weekly Review.txt
+│   └── [No] 05 Improvement Plan.txt
+│
+├── [No] 10 Technical Analysis/
+│   ├── [No] 01 Chart Types.txt
+│   ├── [No] 02 Trendlines And Channels.txt
+│   ├── [No] 03 Moving Averages.txt
+│   ├── [No] 04 RSI.txt
+│   ├── [No] 05 ATR.txt
+│   ├── [No] 06 Fibonacci Basics.txt
+│   └── [No] 07 Indicator Warnings.txt
+│
+├── [No] 11 Fundamental Analysis/
+│   ├── [No] 01 Economic Calendar.txt
+│   ├── [No] 02 Interest Rates.txt
+│   ├── [No] 03 Inflation And CPI.txt
+│   ├── [No] 04 NFP And Major News.txt
+│   ├── [No] 05 Central Banks.txt
+│   └── [No] 06 News Risk Management.txt
+│
+├── [No] 12 Advanced Concepts/
+│   ├── [No] 01 Multi Timeframe Analysis.txt
+│   ├── [No] 02 Correlation.txt
+│   ├── [No] 03 Session Bias.txt
+│   ├── [No] 04 Advanced Risk Models.txt
+│   ├── [No] 05 Building A Trading Plan.txt
+│   └── [No] 06 Scaling And Consistency.txt
+│
+├── [No] 13 Trading Psychology/          
+│   ├── [No] 01 Fear And Greed.txt
+│   ├── [No] 02 Discipline.txt
+│   ├── [No] 03 Patience.txt
+│   ├── [No] 04 FOMO.txt
+│   ├── [No] 05 Revenge Trading.txt
+│   ├── [No] 06 Overconfidence.txt
+│   ├── [No] 07 Loss Aversion.txt
+│   ├── [No] 08 Confirmation Bias.txt
+│   ├── [No] 09 Trading Under Stress.txt
+│   ├── [No] 10 Confidence Vs Ego.txt
+│   ├── [No] 11 Hope.txt                 
+│   ├── [No] 12 Mental Models.txt        
+│   ├── [No] 13 Building Habits.txt
+│   ├── [No] 14 Emotional Checklist.txt
+│   └── [No] 15 Professional Trader Mindset.txt
+│
+├── [No] 14 Trading Mistakes/            
+│   ├── [No] 00 Mistake list.txt
+│   ├── [No] 01 Entering Too Early.txt
+│   ├── [No] 02 Chasing Price.txt
+│   ├── [No] 03 Moving Stop Loss.txt
+│   ├── [No] 04 Overtrading.txt
+│   ├── [No] 05 Ignoring Trend.txt
+│   ├── [No] 06 Trading During News.txt
+│   ├── [No] 07 Risking Too Much.txt
+│   ├── [No] 08 Taking Profit Too Early.txt
+│   ├── [No] 09 Letting Losers Run.txt
+│   ├── [No] 10 FOMO Entries.txt
+│   └── [No] 11 Checklist Before Every Trade.txt
+│
+├── [No] 15 Professional Trading System/ ← renamed from 16
+│   ├── [No] 01 My Trading Rules.txt
+│   ├── [No] 02 My Entry Checklist.txt
+│   ├── [No] 03 My Exit Checklist.txt
+│   ├── [No] 04 My Risk Rules.txt
+│   ├── [No] 05 My Daily Routine.txt
+│   ├── [No] 06 My Weekly Review.txt
+│   ├── [No] 07 My Trading Playbook.txt
+│   └── [No] 08 Version History.txt
+│
+├── _
+│   ├── roadmap.txt
+│   ├── rules.txt
+│   ├── learning_resources.txt
+│   └── chart_notes.txt
+│
+└── trade-planner.html
+

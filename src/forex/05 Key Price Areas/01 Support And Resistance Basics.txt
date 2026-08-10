@@ -1,0 +1,82 @@
+Support: 
+    A zone where buying pressure (demand) exceeds selling pressure
+    Price tends to stop falling and bounce upward
+
+Resistance: 
+    A zone where selling pressure (supply) exceeds demand
+    Price tends to stop rising and move downward
+
+Zone:
+    Zone width rule of thumb:
+    On most pairs: 5–20 pips wide, not a single price
+    Mark the zone from: wick tip to candle body close
+        (the body shows where price "accepted" — more important)
+        (the wick shows where price "rejected" — the extreme)
+    Don't enter at the wick tip — enter near the body close
+
+
+support and resistance Role reversal:
+    Broken resistance → becomes support
+    Broken support → becomes resistance
+
+
+🔹 2 Types of Support
+    1. Trend Continuation Support
+    Happens in an uptrend
+    Previous resistance becomes support
+    This is the latest broken resistance level
+
+    👉 Used for buying pullbacks
+
+    2. Counter-Trend Support
+    Strong zone where price may reverse from downtrend to uptrend
+    Not dependent on recent breakout
+    Usually:
+    Multiple rejections
+    Strong historical level
+
+👉 Used for reversal trades (higher risk)
+
+🔹 2 Types of Resistance
+    1. Trend Continuation Resistance
+    Happens in a downtrend
+    Previous support becomes resistance
+    This is the latest broken support level
+
+    👉 Used for selling pullbacks
+
+    2. Counter-Trend Resistance
+        Strong zone where price may reverse from uptrend to downtrend
+        Not based on recent break
+        Usually:
+        Strong rejection
+        Historical level
+
+    👉 Used for reversal trades
+
+
+how to draw Support And Resistance zones?
+
+
+
+mistakes trader make:
+    not able to enter consistantly inside support resistance zone
+    support and resistance is line → actually zone ✔️ Correct
+    too many zones ✔️ Very important mistake
+    ❗ Ignoring higher timeframe levels (very common beginner error)
+    ❗ Entering blindly without confirmation
+
+
+3-step support and  resistance process
+    identify trend
+    identify trend continuation & counter trend level
+    strong level? (caused a major move/tested multiple times)
+        A level is strong when:
+        tested 2+ times without breaking        ← more tests = more valid
+        caused a sharp/impulsive move away      ← shows real buying/selling
+        visible on higher timeframe (H4, Daily) ← HTF levels > LTF levels
+        round number confluence (1.0800, 160.00 etc) ← psychological levels
+        aligns with previous structure (old high/low)
+
+
+

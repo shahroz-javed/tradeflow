@@ -1,0 +1,57 @@
+PRE-SESSION (before market opens):
+    check economic calendar — note any high-impact news
+            open forexfactory.com/calendar
+            filter: High Impact only
+            any red news today? → note time, set no-trade zone
+            any red news tomorrow? → note for tonight awareness
+    mark HTF levels (H4/Daily) on watchlist pairs
+    identify active supply/demand zones
+    note overall bias (bullish/bearish/no trade)
+    set alerts at key zones
+
+    □ Check Economic Calendar
+    □ Any red news today?
+    □ Which currency is affected?
+
+    □ Session to trade?
+    □ Trend on H4
+    □ Trend on H1
+    □ Mark support
+    □ Mark resistance
+    □ Risk today
+    □ Max trades today
+    □ Stop after daily loss limit
+
+DURING SESSION:
+    do not stare at charts — check at set times
+    when price approaches a zone: run entry checklist
+    if no setup → do nothing (waiting is a position)
+    max 2-3 trades per session
+
+POST-SESSION:
+    journal every trade taken (win or lose)
+    screenshot entry and exit
+    rate your discipline (1-10): did you follow rules?
+    note any mistakes made
+
+WEEKLY:
+    sunday: mark key weekly levels before market opens
+    friday: weekly review (see file 06)
+
+NO TRADE CONDITIONS (mark calendar):
+    high-impact news days (NFP, interest rate decisions)
+    days you are sick, tired, stressed, or distracted
+    days after a big loss (emotional recovery needed)
+
+
+spread Riule:
+    Before entering If spread is unusually high, do not trade.
+
+Holiday Rule
+    Avoid trading:
+        Christmas
+        New Year
+        US Thanksgiving
+        Good Friday
+
+    Liquidity becomes terrible.

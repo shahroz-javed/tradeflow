@@ -1,0 +1,1263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trade Planner</title>
+    <style>
+      :root {
+        --bg: #0a0d12;
+        --panel: #12161d;
+        --panel-2: #1a1f28;
+        --border: #262c38;
+        --text: #e7ebf0;
+        --text-dim: #8b96ac;
+        --text-faint: #4d5566;
+        --accent: #4d8df7;
+        --long: #22c58b;
+        --short: #f0555f;
+        --warn: #f4b860;
+        --font-sans:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+        --font-mono:
+          ui-monospace, "JetBrains Mono", "SF Mono", Consolas, monospace;
+        --radius: 10px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-sans);
+        line-height: 1.5;
+        padding: 1.5rem;
+      }
+      .app {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      /* Header */
+      .app-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .app-header h1 {
+        font-size: 22px;
+        font-weight: 600;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+      .subtitle {
+        margin: 4px 0 0;
+        font-size: 13px;
+        color: var(--text-dim);
+      }
+      .direction-badge {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        padding: 6px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        color: var(--text-faint);
+        background: var(--panel-2);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .direction-badge.long {
+        color: var(--long);
+        border-color: rgba(34, 197, 139, 0.4);
+        background: rgba(34, 197, 139, 0.08);
+      }
+      .direction-badge.short {
+        color: var(--short);
+        border-color: rgba(240, 85, 95, 0.4);
+        background: rgba(240, 85, 95, 0.08);
+      }
+
+      /* Risk meter */
+      .risk-meter-wrap {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1rem 1.1rem;
+        margin-bottom: 1.5rem;
+      }
+      .risk-meter-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--text-dim);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .risk-meter-label span:last-child {
+        font-family: var(--font-mono);
+        color: var(--text);
+        font-size: 13px;
+        text-transform: none;
+        letter-spacing: 0;
+      }
+      .risk-meter-track {
+        height: 8px;
+        background: var(--panel-2);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .risk-meter-fill {
+        height: 100%;
+        border-radius: 4px;
+        background: var(--long);
+        transition:
+          width 0.15s ease,
+          background 0.15s ease;
+      }
+      .risk-meter-scale {
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        color: var(--text-faint);
+        margin-top: 6px;
+        font-family: var(--font-mono);
+      }
+
+      /* Grid */
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+      }
+      @media (max-width: 860px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.25rem;
+      }
+      .panel-title {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-dim);
+        margin: 0 0 1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .auto-tag {
+        font-size: 10px;
+        font-weight: 500;
+        text-transform: none;
+        letter-spacing: 0;
+        color: var(--accent);
+        background: rgba(77, 141, 247, 0.12);
+        border-radius: 4px;
+        padding: 1px 6px;
+      }
+
+      /* Fields */
+      .field {
+        margin-bottom: 0.9rem;
+      }
+      .field label {
+        display: block;
+        font-size: 12.5px;
+        color: var(--text-dim);
+        margin-bottom: 5px;
+      }
+      .field-row {
+        display: flex;
+        gap: 6px;
+        align-items: flex-end;
+      }
+      .field-row input {
+        flex: 1;
+      }
+      .field input,
+      .field select {
+        width: 100%;
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        color: var(--text);
+        border-radius: 6px;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-family: var(--font-mono);
+      }
+      .field select {
+        font-family: var(--font-sans);
+      }
+      .field input:focus,
+      .field select:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+      .slider-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .slider-row input[type="range"] {
+        flex: 1;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 4px;
+        background: var(--panel-2);
+        border: none;
+        border-radius: 2px;
+        padding: 0;
+      }
+      .slider-row input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--accent);
+        cursor: pointer;
+        border: none;
+      }
+      .slider-row input[type="range"]::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--accent);
+        cursor: pointer;
+        border: none;
+      }
+      .slider-val {
+        font-family: var(--font-mono);
+        font-size: 14px;
+        min-width: 56px;
+        text-align: right;
+      }
+
+      /* Voice button */
+      .voice-btn {
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        color: var(--text-dim);
+        border-radius: 6px;
+        padding: 8px 10px;
+        cursor: pointer;
+        font-size: 15px;
+        line-height: 1;
+        flex-shrink: 0;
+        transition: all 0.1s;
+      }
+      .voice-btn:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .voice-btn.listening {
+        border-color: var(--short);
+        color: var(--short);
+        background: rgba(240, 85, 95, 0.1);
+        animation: pulse 1s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      /* Voice panel */
+      .voice-panel {
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1rem;
+        margin-bottom: 1.25rem;
+        display: none;
+      }
+      .voice-panel.visible {
+        display: block;
+      }
+      .voice-panel-title {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-dim);
+        margin: 0 0 8px;
+      }
+      .voice-status {
+        font-size: 13px;
+        color: var(--text-dim);
+        margin: 0 0 8px;
+        min-height: 1.5em;
+      }
+      .voice-transcript {
+        font-size: 13px;
+        font-family: var(--font-mono);
+        color: var(--accent);
+        min-height: 1.5em;
+        margin: 0 0 8px;
+        word-break: break-word;
+      }
+      .voice-hints {
+        font-size: 11.5px;
+        color: var(--text-faint);
+        line-height: 1.7;
+        margin: 0;
+      }
+      .voice-hints b {
+        color: var(--text-dim);
+      }
+
+      /* Quick RR */
+      .quick-rr {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: -0.2rem;
+        margin-bottom: 0.5rem;
+        flex-wrap: wrap;
+      }
+      .quick-rr span {
+        font-size: 12px;
+        color: var(--text-faint);
+      }
+      .quick-rr button {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        color: var(--text-dim);
+        border-radius: 5px;
+        padding: 4px 10px;
+        cursor: pointer;
+      }
+      .quick-rr button:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+
+      /* Metrics */
+      .metrics-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.6rem;
+        margin-bottom: 0.6rem;
+      }
+      .metric {
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.65rem 0.75rem;
+      }
+      .metric .m-label {
+        font-size: 11px;
+        color: var(--text-faint);
+        margin: 0 0 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .metric .m-value {
+        font-family: var(--font-mono);
+        font-size: 15px;
+        font-weight: 600;
+        margin: 0;
+        word-break: break-word;
+      }
+      .metric.highlight {
+        border-color: rgba(77, 141, 247, 0.4);
+        background: rgba(77, 141, 247, 0.06);
+      }
+      .metric.profit .m-value {
+        color: var(--long);
+      }
+      .metric.loss .m-value {
+        color: var(--short);
+      }
+
+      .copy-btn {
+        width: 100%;
+        margin-top: 0.75rem;
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        color: var(--text);
+        border-radius: 6px;
+        padding: 10px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        font-family: var(--font-sans);
+      }
+      .copy-btn:hover {
+        border-color: var(--accent);
+      }
+      .warning {
+        font-size: 12.5px;
+        color: var(--warn);
+        margin: 0.6rem 0 0;
+        min-height: 1em;
+      }
+      .footnote {
+        font-size: 11.5px;
+        color: var(--text-faint);
+        margin-top: 1.5rem;
+        line-height: 1.7;
+      }
+      .saved-badge {
+        font-size: 11px;
+        color: var(--long);
+        margin-left: 8px;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .saved-badge.show {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <div>
+          <h1>Trade Planner</h1>
+          <p class="subtitle">
+            Position size &amp; risk calculator — USD pairs
+          </p>
+        </div>
+        <div class="direction-badge" id="directionBadge">—</div>
+      </header>
+
+      <!-- Voice Panel -->
+      <div class="voice-panel" id="voicePanel">
+        <p class="voice-panel-title">🎤 Voice Entry</p>
+        <p class="voice-status" id="voiceStatus">
+          Press the mic button next to any field and speak.
+        </p>
+        <p class="voice-transcript" id="voiceTranscript"></p>
+        <p class="voice-hints">
+          Say a number to set the value. Examples:<br />
+          <b>Entry:</b> "one sixty point zero two" &nbsp;|&nbsp; <b>SL:</b> "one
+          fifty nine point eight" &nbsp;|&nbsp; <b>TP:</b> "one sixty one"
+          &nbsp;|&nbsp; <b>Capital:</b> "two hundred" &nbsp;|&nbsp;
+          <b>Leverage:</b> "five hundred"
+        </p>
+      </div>
+
+      <div class="risk-meter-wrap">
+        <div class="risk-meter-label">
+          <span>Risk on this trade</span>
+          <span id="riskMeterPct">2.00%</span>
+        </div>
+        <div class="risk-meter-track">
+          <div
+            class="risk-meter-fill"
+            id="riskMeterFill"
+            style="width: 40%"
+          ></div>
+        </div>
+        <div class="risk-meter-scale">
+          <span>0%</span><span>2%</span><span>4%</span><span>6%</span
+          ><span>8%</span><span>10%</span>
+        </div>
+      </div>
+
+      <div class="grid">
+        <!-- LEFT: INPUTS -->
+        <section class="panel">
+          <h2 class="panel-title">
+            Account
+            <span class="saved-badge" id="savedBadge">✓ saved</span>
+          </h2>
+
+          <div class="field">
+            <label for="capital">Capital ($)</label>
+            <div class="field-row">
+              <input type="number" id="capital" value="200" min="0" step="1" />
+              <button
+                class="voice-btn"
+                data-target="capital"
+                title="Voice input"
+              >
+                🎤
+              </button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="risk">Risk per trade</label>
+            <div class="slider-row">
+              <input
+                type="range"
+                id="risk"
+                min="0.25"
+                max="10"
+                step="0.25"
+                value="2"
+              />
+              <span class="slider-val" id="riskVal">2.00%</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="leverage">Leverage (1:X)</label>
+            <div class="field-row">
+              <input type="number" id="leverage" value="500" min="1" step="1" />
+              <button
+                class="voice-btn"
+                data-target="leverage"
+                title="Voice input"
+              >
+                🎤
+              </button>
+            </div>
+          </div>
+
+          <h2 class="panel-title" style="margin-top: 1.5rem">Trade Setup</h2>
+
+          <div class="field">
+            <label for="pair">Pair</label>
+            <select id="pair">
+              <optgroup label="USD is quote — fixed $10/pip per lot">
+                <option value="EURUSD">EUR/USD</option>
+                <option value="GBPUSD">GBP/USD</option>
+                <option value="AUDUSD">AUD/USD</option>
+                <option value="NZDUSD">NZD/USD</option>
+              </optgroup>
+              <optgroup label="USD is base — pip value scales with price">
+                <option value="USDJPY" selected>USD/JPY</option>
+                <option value="USDCAD">USD/CAD</option>
+                <option value="USDCHF">USD/CHF</option>
+              </optgroup>
+              <optgroup label="Commodities — $ per $1 move, no pips">
+                <option value="XAUUSD">XAU/USD (Gold)</option>
+                <option value="XAGUSD">XAG/USD (Silver)</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="entry">Entry price</label>
+            <div class="field-row">
+              <input type="number" id="entry" value="160.020" step="0.001" />
+              <button class="voice-btn" data-target="entry" title="Voice input">
+                🎤
+              </button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="sl">Stop-loss price</label>
+            <div class="field-row">
+              <input type="number" id="sl" value="159.820" step="0.001" />
+              <button class="voice-btn" data-target="sl" title="Voice input">
+                🎤
+              </button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="tp">Take-profit price</label>
+            <div class="field-row">
+              <input type="number" id="tp" value="160.420" step="0.001" />
+              <button class="voice-btn" data-target="tp" title="Voice input">
+                🎤
+              </button>
+            </div>
+          </div>
+
+          <div class="quick-rr">
+            <span>Quick set TP:</span>
+            <button type="button" data-rr="1">1:1</button>
+            <button type="button" data-rr="2">1:2</button>
+            <button type="button" data-rr="3">1:3</button>
+            <button type="button" data-rr="4">1:4</button>
+          </div>
+        </section>
+
+        <!-- RIGHT: RESULTS -->
+        <section class="panel">
+          <h2 class="panel-title">
+            Pair info <span class="auto-tag">auto</span>
+          </h2>
+          <div class="metrics-row">
+            <div class="metric">
+              <p class="m-label">Calc type</p>
+              <p class="m-value" id="calcType">—</p>
+            </div>
+            <div class="metric">
+              <p class="m-label">Pip / point size</p>
+              <p class="m-value" id="pipSize">—</p>
+            </div>
+            <div class="metric">
+              <p class="m-label">Value per std lot</p>
+              <p class="m-value" id="valuePerLot">—</p>
+            </div>
+          </div>
+
+          <h2 class="panel-title" style="margin-top: 1.25rem">
+            Risk &amp; Distance
+          </h2>
+          <div class="metrics-row">
+            <div class="metric highlight">
+              <p class="m-label">Risk amount</p>
+              <p class="m-value" id="riskAmount">—</p>
+            </div>
+            <div class="metric">
+              <p class="m-label">SL distance</p>
+              <p class="m-value" id="slDistance">—</p>
+            </div>
+            <div class="metric">
+              <p class="m-label">TP distance</p>
+              <p class="m-value" id="tpDistance">—</p>
+            </div>
+          </div>
+
+          <h2 class="panel-title" style="margin-top: 1.25rem">
+            Position Sizing
+          </h2>
+          <div class="metrics-row">
+            <div class="metric highlight">
+              <p class="m-label">Lot size (exact)</p>
+              <p class="m-value" id="lotsExact">—</p>
+            </div>
+            <div class="metric highlight">
+              <p class="m-label">Lot size (rounded)</p>
+              <p class="m-value" id="lotsRounded">—</p>
+            </div>
+            <div class="metric">
+              <p class="m-label">Position size</p>
+              <p class="m-value" id="positionSize">—</p>
+            </div>
+          </div>
+          <div class="metrics-row">
+            <div class="metric">
+              <p class="m-label">Margin required</p>
+              <p class="m-value" id="margin">—</p>
+            </div>
+            <div class="metric">
+              <p class="m-label">Free margin</p>
+              <p class="m-value" id="freeMargin">—</p>
+            </div>
+            <div class="metric">
+              <p class="m-label">Actual risk</p>
+              <p class="m-value" id="actualRisk">—</p>
+            </div>
+          </div>
+
+          <h2 class="panel-title" style="margin-top: 1.25rem">Outcome</h2>
+          <div class="metrics-row">
+            <div class="metric profit">
+              <p class="m-label">Potential profit</p>
+              <p class="m-value" id="potentialProfit">—</p>
+            </div>
+            <div class="metric loss">
+              <p class="m-label">Potential loss</p>
+              <p class="m-value" id="potentialLoss">—</p>
+            </div>
+            <div class="metric">
+              <p class="m-label">Risk : Reward</p>
+              <p class="m-value" id="rrRatio">—</p>
+            </div>
+          </div>
+          <div class="metrics-row">
+            <div class="metric">
+              <p class="m-label">Breakeven win rate</p>
+              <p class="m-value" id="breakeven">—</p>
+            </div>
+          </div>
+
+          <button type="button" class="copy-btn" id="copyBtn">
+            Copy trade summary
+          </button>
+          <p class="warning" id="warningMsg"></p>
+        </section>
+      </div>
+
+      <p class="footnote">
+        Standard lot = 100,000 units (forex) · 100 oz (gold) · 5,000 oz
+        (silver). Lot size always rounds
+        <strong>down</strong> to nearest 0.01 — actual risk slightly less than
+        target, never more. Account fields (capital, risk %, leverage, pair)
+        auto-saved to localStorage. Trade prices reset each session.
+      </p>
+    </div>
+
+    <script>
+      const PAIRS = {
+        EURUSD: {
+          label: "EUR/USD",
+          type: "USD_QUOTE",
+          pipSize: 0.0001,
+          contractSize: 100000,
+          decimals: 5,
+          unit: "EUR",
+          defEntry: 1.085,
+          defSL: 1.083,
+        },
+        GBPUSD: {
+          label: "GBP/USD",
+          type: "USD_QUOTE",
+          pipSize: 0.0001,
+          contractSize: 100000,
+          decimals: 5,
+          unit: "GBP",
+          defEntry: 1.27,
+          defSL: 1.268,
+        },
+        AUDUSD: {
+          label: "AUD/USD",
+          type: "USD_QUOTE",
+          pipSize: 0.0001,
+          contractSize: 100000,
+          decimals: 5,
+          unit: "AUD",
+          defEntry: 0.665,
+          defSL: 0.663,
+        },
+        NZDUSD: {
+          label: "NZD/USD",
+          type: "USD_QUOTE",
+          pipSize: 0.0001,
+          contractSize: 100000,
+          decimals: 5,
+          unit: "NZD",
+          defEntry: 0.61,
+          defSL: 0.608,
+        },
+        USDJPY: {
+          label: "USD/JPY",
+          type: "USD_BASE_JPY",
+          pipSize: 0.01,
+          contractSize: 100000,
+          decimals: 3,
+          unit: "USD",
+          defEntry: 160.02,
+          defSL: 159.82,
+        },
+        USDCAD: {
+          label: "USD/CAD",
+          type: "USD_BASE",
+          pipSize: 0.0001,
+          contractSize: 100000,
+          decimals: 5,
+          unit: "USD",
+          defEntry: 1.365,
+          defSL: 1.363,
+        },
+        USDCHF: {
+          label: "USD/CHF",
+          type: "USD_BASE",
+          pipSize: 0.0001,
+          contractSize: 100000,
+          decimals: 5,
+          unit: "USD",
+          defEntry: 0.895,
+          defSL: 0.893,
+        },
+        XAUUSD: {
+          label: "XAU/USD (Gold)",
+          type: "COMMODITY",
+          pipSize: 1,
+          contractSize: 100,
+          decimals: 2,
+          unit: "oz",
+          defEntry: 4012.03,
+          defSL: 4004.03,
+        },
+        XAGUSD: {
+          label: "XAG/USD (Silver)",
+          type: "COMMODITY",
+          pipSize: 1,
+          contractSize: 5000,
+          decimals: 2,
+          unit: "oz",
+          defEntry: 28.5,
+          defSL: 28.3,
+        },
+      };
+
+      const $ = (id) => document.getElementById(id);
+
+      const capitalEl = $("capital"),
+        riskEl = $("risk"),
+        riskValEl = $("riskVal"),
+        leverageEl = $("leverage"),
+        pairEl = $("pair"),
+        entryEl = $("entry"),
+        slEl = $("sl"),
+        tpEl = $("tp");
+      const directionBadge = $("directionBadge");
+      const riskMeterFill = $("riskMeterFill"),
+        riskMeterPctEl = $("riskMeterPct");
+      const calcTypeEl = $("calcType"),
+        pipSizeEl = $("pipSize"),
+        valuePerLotEl = $("valuePerLot");
+      const riskAmountEl = $("riskAmount"),
+        slDistanceEl = $("slDistance"),
+        tpDistanceEl = $("tpDistance");
+      const lotsExactEl = $("lotsExact"),
+        lotsRoundedEl = $("lotsRounded"),
+        positionSizeEl = $("positionSize");
+      const marginEl = $("margin"),
+        freeMarginEl = $("freeMargin"),
+        actualRiskEl = $("actualRisk");
+      const potentialProfitEl = $("potentialProfit"),
+        potentialLossEl = $("potentialLoss"),
+        rrRatioEl = $("rrRatio"),
+        breakevenEl = $("breakeven");
+      const copyBtn = $("copyBtn"),
+        warningEl = $("warningMsg");
+      const voicePanel = $("voicePanel"),
+        voiceStatus = $("voiceStatus"),
+        voiceTranscript = $("voiceTranscript");
+      const savedBadge = $("savedBadge");
+
+      let userEditedPrices = false;
+      let lastSummary = "";
+      let savedBadgeTimer = null;
+
+      // ─── localStorage persistence ───────────────────────────────
+      const LS_KEY = "tradePlanner_account";
+      const PERSIST_FIELDS = ["capital", "risk", "leverage", "pair"];
+
+      function saveAccount() {
+        const data = {};
+        data.capital = capitalEl.value;
+        data.risk = riskEl.value;
+        data.leverage = leverageEl.value;
+        data.pair = pairEl.value;
+        try {
+          localStorage.setItem(LS_KEY, JSON.stringify(data));
+        } catch (e) {}
+        // show saved badge briefly
+        savedBadge.classList.add("show");
+        clearTimeout(savedBadgeTimer);
+        savedBadgeTimer = setTimeout(
+          () => savedBadge.classList.remove("show"),
+          1500,
+        );
+      }
+
+      function loadAccount() {
+        try {
+          const raw = localStorage.getItem(LS_KEY);
+          if (!raw) return;
+          const data = JSON.parse(raw);
+          if (data.capital) capitalEl.value = data.capital;
+          if (data.risk) riskEl.value = data.risk;
+          if (data.leverage) leverageEl.value = data.leverage;
+          if (data.pair && PAIRS[data.pair]) pairEl.value = data.pair;
+        } catch (e) {}
+      }
+
+      // ─── Helpers ─────────────────────────────────────────────────
+      function fmtUSD(n) {
+        if (!isFinite(n)) return "—";
+        return (
+          "$" +
+          n.toLocaleString("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })
+        );
+      }
+      function fmtNum(n, dp) {
+        if (!isFinite(n)) return "—";
+        return n.toLocaleString("en-US", {
+          minimumFractionDigits: dp,
+          maximumFractionDigits: dp,
+        });
+      }
+      function calcTypeLabel(type) {
+        return {
+          USD_QUOTE: "USD is quote",
+          USD_BASE_JPY: "USD is base (JPY)",
+          USD_BASE: "USD is base",
+          COMMODITY: "Commodity",
+        }[type];
+      }
+      function pipSizeDisplay(p) {
+        return p.type === "COMMODITY" ? "$1.00 / unit" : p.pipSize.toString();
+      }
+      function valuePerStdLot(p, price) {
+        if (p.type === "USD_QUOTE") return 10;
+        if (p.type === "COMMODITY") return p.contractSize;
+        return (p.pipSize / price) * p.contractSize;
+      }
+      function formatDistance(units, p) {
+        if (!isFinite(units)) return "—";
+        return p.type === "COMMODITY"
+          ? "$" + units.toFixed(2)
+          : units.toFixed(1) + " pips";
+      }
+      function updateRiskMeter(pct) {
+        const c = Math.min(Math.max(pct, 0), 10);
+        riskMeterFill.style.width = (c / 10) * 100 + "%";
+        riskMeterFill.style.background =
+          pct <= 2 ? "var(--long)" : pct <= 4 ? "var(--warn)" : "var(--short)";
+        riskMeterPctEl.textContent = pct.toFixed(2) + "%";
+      }
+
+      // ─── Recalc ──────────────────────────────────────────────────
+      function recalc() {
+        const p = PAIRS[pairEl.value];
+        const capital = parseFloat(capitalEl.value) || 0;
+        const riskPct = parseFloat(riskEl.value) || 0;
+        const leverage = parseFloat(leverageEl.value) || 1;
+        const entry = parseFloat(entryEl.value);
+        const sl = parseFloat(slEl.value);
+        const tp = parseFloat(tpEl.value);
+
+        riskValEl.textContent = riskPct.toFixed(2) + "%";
+        updateRiskMeter(riskPct);
+        calcTypeEl.textContent = calcTypeLabel(p.type);
+        pipSizeEl.textContent = pipSizeDisplay(p);
+        const refPrice = isFinite(entry) && entry > 0 ? entry : 1;
+        const vpl = valuePerStdLot(p, refPrice);
+        valuePerLotEl.textContent =
+          fmtUSD(vpl) + (p.type === "COMMODITY" ? " / $1" : " / pip");
+        warningEl.textContent = "";
+
+        if (!isFinite(entry) || !isFinite(sl) || entry === sl) {
+          [
+            riskAmountEl,
+            slDistanceEl,
+            tpDistanceEl,
+            lotsExactEl,
+            lotsRoundedEl,
+            positionSizeEl,
+            marginEl,
+            freeMarginEl,
+            actualRiskEl,
+            potentialProfitEl,
+            potentialLossEl,
+            rrRatioEl,
+            breakevenEl,
+          ].forEach((el) => (el.textContent = "—"));
+          directionBadge.textContent = "—";
+          directionBadge.className = "direction-badge";
+          if (isFinite(entry) && entry === sl)
+            warningEl.textContent =
+              "Entry and stop-loss can\u2019t be the same price.";
+          lastSummary = "";
+          return;
+        }
+
+        const dir = sl < entry ? 1 : -1;
+        directionBadge.textContent = dir === 1 ? "LONG" : "SHORT";
+        directionBadge.className =
+          "direction-badge " + (dir === 1 ? "long" : "short");
+
+        const slDistPrice = Math.abs(entry - sl);
+        const slUnits = slDistPrice / p.pipSize;
+        const riskAmount = capital * (riskPct / 100);
+        const lotsExact =
+          slUnits > 0 && vpl > 0 ? riskAmount / (slUnits * vpl) : 0;
+        const lotsRounded = Math.floor(lotsExact * 100) / 100;
+        const unitsRounded = lotsRounded * p.contractSize;
+
+        const notional =
+          p.type === "USD_QUOTE" || p.type === "COMMODITY"
+            ? unitsRounded * entry
+            : unitsRounded;
+        const margin = notional / leverage;
+        const freeMargin = capital - margin;
+
+        let tpUnits = NaN,
+          rr = NaN;
+        if (isFinite(tp) && tp !== entry) {
+          tpUnits = Math.abs(tp - entry) / p.pipSize;
+          rr = tpUnits / slUnits;
+        }
+
+        const potLoss = slUnits * vpl * lotsRounded;
+        const potProfit = isFinite(tpUnits) ? tpUnits * vpl * lotsRounded : NaN;
+        const breakeven = isFinite(rr) ? (1 / (1 + rr)) * 100 : NaN;
+
+        riskAmountEl.textContent = fmtUSD(riskAmount);
+        slDistanceEl.textContent = formatDistance(slUnits, p);
+        tpDistanceEl.textContent = formatDistance(tpUnits, p);
+        lotsExactEl.textContent = lotsExact.toFixed(4);
+        lotsRoundedEl.textContent = lotsRounded.toFixed(2);
+        positionSizeEl.textContent = fmtNum(unitsRounded, 0) + " " + p.unit;
+        marginEl.textContent = fmtUSD(margin);
+        freeMarginEl.textContent = fmtUSD(freeMargin);
+        actualRiskEl.textContent = fmtUSD(potLoss);
+        potentialProfitEl.textContent = fmtUSD(potProfit);
+        potentialLossEl.textContent = fmtUSD(potLoss);
+        rrRatioEl.textContent = isFinite(rr) ? "1 : " + rr.toFixed(2) : "—";
+        breakevenEl.textContent = isFinite(breakeven)
+          ? breakeven.toFixed(1) + "%"
+          : "—";
+
+        if (lotsRounded === 0 && slUnits > 0)
+          warningEl.textContent =
+            "Position size rounds to 0 — increase risk %, tighten stop, or this trade isn\u2019t viable at current account size.";
+
+        lastSummary = `TRADE PLAN — ${p.label} (${dir === 1 ? "LONG" : "SHORT"})
+Entry:      ${entry.toFixed(p.decimals)}
+Stop Loss:  ${sl.toFixed(p.decimals)}  (${formatDistance(slUnits, p)})
+Take Profit:${isFinite(tp) ? tp.toFixed(p.decimals) : "—"}  (${formatDistance(tpUnits, p)})
+R:R = ${isFinite(rr) ? "1:" + rr.toFixed(2) : "—"}  |  Breakeven win rate: ${isFinite(breakeven) ? breakeven.toFixed(1) + "%" : "—"}
+
+Account: $${capital.toFixed(2)}  |  Risk: ${riskPct.toFixed(2)}% ($${riskAmount.toFixed(2)})
+Lot size: ${lotsRounded.toFixed(2)} (${fmtNum(unitsRounded, 0)} ${p.unit})
+Margin: $${margin.toFixed(2)}  |  Free margin: $${freeMargin.toFixed(2)}
+Potential profit: ${fmtUSD(potProfit)}  |  Potential loss: ${fmtUSD(potLoss)}`;
+      }
+
+      function applyPairDefaults() {
+        const p = PAIRS[pairEl.value];
+        const step = (1 / Math.pow(10, p.decimals)).toFixed(p.decimals);
+        [entryEl, slEl, tpEl].forEach((el) => (el.step = step));
+        if (!userEditedPrices) {
+          entryEl.value = p.defEntry.toFixed(p.decimals);
+          slEl.value = p.defSL.toFixed(p.decimals);
+          const dist = Math.abs(p.defEntry - p.defSL),
+            d = p.defSL < p.defEntry ? 1 : -1;
+          tpEl.value = (p.defEntry + d * dist * 2).toFixed(p.decimals);
+        }
+      }
+
+      // ─── Voice recognition ───────────────────────────────────────
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+      let recognition = null;
+      let activeTarget = null;
+      let activeBtn = null;
+
+      if (SpeechRecognition) {
+        recognition = new SpeechRecognition();
+        recognition.lang = "en-US";
+        recognition.interimResults = true;
+        recognition.maxAlternatives = 1;
+
+        recognition.onstart = () => {
+          voicePanel.classList.add("visible");
+          voiceStatus.textContent = "🔴 Listening… speak the number now";
+          voiceTranscript.textContent = "";
+        };
+
+        recognition.onresult = (e) => {
+          const transcript = Array.from(e.results)
+            .map((r) => r[0].transcript)
+            .join("");
+          voiceTranscript.textContent = transcript;
+          if (e.results[e.results.length - 1].isFinal) {
+            const num = parseSpokenNumber(transcript);
+            if (num !== null && activeTarget) {
+              const el = $(activeTarget);
+              el.value = num;
+              el.dispatchEvent(new Event("input"));
+              voiceStatus.textContent = "✓ Set to " + num;
+              if (["entry", "sl", "tp"].includes(activeTarget))
+                userEditedPrices = true;
+            } else {
+              voiceStatus.textContent =
+                "Couldn\u2019t parse a number — try again";
+            }
+            if (activeBtn) {
+              activeBtn.classList.remove("listening");
+              activeBtn = null;
+            }
+          }
+        };
+
+        recognition.onerror = (e) => {
+          voiceStatus.textContent = "Error: " + e.error + ". Try again.";
+          if (activeBtn) {
+            activeBtn.classList.remove("listening");
+            activeBtn = null;
+          }
+        };
+
+        recognition.onend = () => {
+          if (activeBtn) {
+            activeBtn.classList.remove("listening");
+            activeBtn = null;
+          }
+        };
+      }
+
+      // Convert spoken words to number: "one sixty point zero two" → 160.02
+      function parseSpokenNumber(text) {
+        const t = text.toLowerCase().trim();
+
+        // First try: just extract a numeric string directly
+        const directMatch = t.replace(/[^0-9.]/g, "");
+        if (directMatch && !isNaN(parseFloat(directMatch)))
+          return parseFloat(directMatch);
+
+        // Word-to-number map
+        const words = {
+          zero: 0,
+          one: 1,
+          two: 2,
+          three: 3,
+          four: 4,
+          five: 5,
+          six: 6,
+          seven: 7,
+          eight: 8,
+          nine: 9,
+          ten: 10,
+          eleven: 11,
+          twelve: 12,
+          thirteen: 13,
+          fourteen: 14,
+          fifteen: 15,
+          sixteen: 16,
+          seventeen: 17,
+          eighteen: 18,
+          nineteen: 19,
+          twenty: 20,
+          thirty: 30,
+          forty: 40,
+          fifty: 50,
+          sixty: 60,
+          seventy: 70,
+          eighty: 80,
+          ninety: 90,
+          hundred: 100,
+          thousand: 1000,
+          a: 1,
+          an: 1,
+          oh: 0,
+          o: 0,
+        };
+
+        // Split on "point" to handle decimals
+        const parts = t.replace(/\band\b/g, "").split(/\bpoint\b/);
+        function wordsToInt(str) {
+          const tokens = str.trim().split(/\s+/);
+          let total = 0,
+            current = 0;
+          for (const tok of tokens) {
+            const val = words[tok];
+            if (val === undefined) continue;
+            if (val === 100) {
+              current = (current || 1) * 100;
+            } else if (val === 1000) {
+              total = (total + current) * 1000;
+              current = 0;
+            } else {
+              current += val;
+            }
+          }
+          return total + current;
+        }
+
+        let result;
+        if (parts.length === 1) {
+          result = wordsToInt(parts[0]);
+        } else {
+          const intPart = wordsToInt(parts[0]);
+          // decimal part: treat each word as individual digit
+          const decTokens = parts[1].trim().split(/\s+/);
+          const decStr = decTokens
+            .map((w) => (words[w] !== undefined ? words[w] : ""))
+            .join("");
+          result = parseFloat(intPart + "." + decStr);
+        }
+        return isFinite(result) && result > 0 ? result : null;
+      }
+
+      document.querySelectorAll(".voice-btn").forEach((btn) => {
+        if (!SpeechRecognition) {
+          btn.title = "Voice not supported in this browser";
+          btn.style.opacity = "0.4";
+          btn.style.cursor = "not-allowed";
+          return;
+        }
+        btn.addEventListener("click", () => {
+          const target = btn.dataset.target;
+          if (activeBtn && activeBtn !== btn) {
+            recognition.stop();
+            activeBtn.classList.remove("listening");
+          }
+          if (btn.classList.contains("listening")) {
+            recognition.stop();
+            btn.classList.remove("listening");
+            voiceStatus.textContent = "Stopped.";
+            activeBtn = null;
+            activeTarget = null;
+            return;
+          }
+          activeTarget = target;
+          activeBtn = btn;
+          btn.classList.add("listening");
+          recognition.start();
+        });
+      });
+
+      // ─── Event listeners ─────────────────────────────────────────
+      // Account fields → save to localStorage on change
+      capitalEl.addEventListener("input", () => {
+        recalc();
+        saveAccount();
+      });
+      riskEl.addEventListener("input", () => {
+        recalc();
+        saveAccount();
+      });
+      leverageEl.addEventListener("input", () => {
+        recalc();
+        saveAccount();
+      });
+      pairEl.addEventListener("change", () => {
+        applyPairDefaults();
+        recalc();
+        saveAccount();
+      });
+
+      // Trade price fields → just recalc, don't persist
+      [entryEl, slEl, tpEl].forEach((el) =>
+        el.addEventListener("input", () => {
+          userEditedPrices = true;
+          recalc();
+        }),
+      );
+
+      // Quick RR buttons
+      document.querySelectorAll(".quick-rr button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const p = PAIRS[pairEl.value];
+          const entry = parseFloat(entryEl.value),
+            sl = parseFloat(slEl.value);
+          if (!isFinite(entry) || !isFinite(sl) || entry === sl) return;
+          const dist = Math.abs(entry - sl),
+            d = sl < entry ? 1 : -1,
+            rr = parseFloat(btn.dataset.rr);
+          tpEl.value = (entry + d * dist * rr).toFixed(p.decimals);
+          userEditedPrices = true;
+          recalc();
+        });
+      });
+
+      copyBtn.addEventListener("click", () => {
+        if (!lastSummary) return;
+        navigator.clipboard.writeText(lastSummary).then(() => {
+          copyBtn.textContent = "Copied ✓";
+          setTimeout(() => (copyBtn.textContent = "Copy trade summary"), 1500);
+        });
+      });
+
+      // ─── Init ────────────────────────────────────────────────────
+      loadAccount();
+      applyPairDefaults();
+      recalc();
+    </script>
+  </body>
+</html>

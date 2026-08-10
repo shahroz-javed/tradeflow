@@ -1,0 +1,19 @@
+Bid — the price you SELL at
+Ask — the price you BUY at
+
+Simple analogy — money exchange shop
+    You go to exchange shop with USD, want PKR
+    USD / PKR
+    ↑      ↑
+    BASE   QUOTE
+
+    Shop board shows:
+    BUY  (they buy your USD):  PKR 277
+    SELL (they sell you USD):  PKR 280
+
+    They buy LOW, sell HIGH
+    The difference is their profit [called spread]
+
+
+
+

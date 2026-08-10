@@ -1,0 +1,6 @@
+Stop Loss (SL)
+    Maximum loss you're willing to accept.
+
+Take Profit (TP)
+    Target profit.
+

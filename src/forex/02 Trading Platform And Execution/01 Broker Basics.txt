@@ -1,0 +1,55 @@
+A broker is the company that connects you to the forex market.
+    You → Broker → Liquidity Providers/Banks → Market
+    Think of a broker like an internet service provider.
+
+
+
+A broker provides:
+    Trading platform (e.g., MT5)
+    Price quotes
+    Order execution
+    Leverage
+    Account management
+    Deposits & withdrawals
+
+Liquidity Providers
+    Your broker usually gets prices from:
+        Banks
+        Financial institutions
+        ECNs
+        Other liquidity providers
+    The broker aggregates these prices and shows you the best available bid and ask.
+
+
+Types of brokers
+    Market Maker (Dealing Desk)
+        The broker may become the counterparty to your trade.
+
+        Pros:
+            Fast execution
+            Small accounts accepted
+
+
+        Cons:
+            Potential conflict of interest (though many regulated brokers manage this fairly)
+
+    ECN/STP
+        Your order is routed toward liquidity providers.
+        Pros:
+            Usually tighter spreads
+            Greater transparency
+
+        Cons:
+            Commission may apply
+
+    Regulated vs Unregulated
+        Always prefer regulated brokers.
+
+
+
+Checklist before opening an account
+    ✔ Regulation
+    ✔ Low spreads
+    ✔ Fast execution
+    ✔ Good withdrawal reputation
+    ✔ Strong customer support

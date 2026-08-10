@@ -1,0 +1,62 @@
+RISK OF LOSING MONEY
+
+Basic truth:
+    • Every trade can lose
+    • No guaranteed setup
+    • Losing is normal
+    • Unplanned losses are dangerous
+
+Only risk:
+    • Money you can afford to lose
+    • Never rent, bills, emergency fund, borrowed money
+
+Drawdown math:
+    • -10% = +11% recovery
+    • -20% = +25%
+    • -50% = +100%
+    • -80% = +400%
+
+Account killers:
+    • No stop loss
+    • Moving stop loss
+    • Overleveraging
+    • Oversized positions
+    • Revenge trading
+    • Overtrading
+
+Psychological risks:
+    • Fear
+    • Greed
+    • Frustration
+    • Overconfidence
+
+Risk management:
+    • Risk is unavoidable
+    • Risk is manageable
+    • Control loss size, not outcomes
+
+Position sizing:
+    1. Risk amount
+    2. Stop loss
+    3. Lot size
+
+Before entry ask:
+    • What is my risk?
+    • Where is my stop?
+    • Can I survive 10 losses in a row?
+
+Risk-reward:
+    • Higher RR improves expectancy
+    • RR alone is not an edge
+
+Journal:
+    • Setup
+    • Entry
+    • SL
+    • TP
+    • Reason
+    • Outcome
+
+Core principle:
+    Protect capital first.
+    Survival comes before growth.

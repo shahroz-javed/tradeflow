@@ -1,0 +1,25 @@
+these numbers are fixed — not adjusted based on feelings
+
+ACCOUNT: $200 (update when changes)
+RISK PER TRADE: 2% = $4 maximum loss per trade
+MAX DAILY LOSS: 4% = $8 (2 losing trades → stop for the day)
+MAX WEEKLY LOSS: 8% = $16 (stop trading, review mistakes)
+LEVERAGE: 1:500 (margin tool only — position size set by risk %)
+
+POSITION SIZING:
+    always use trade planner
+    formula: Lots = Risk Amount ÷ (SL pips × pip value)
+    round DOWN to nearest 0.01 lot (never round up)
+
+DRAWDOWN RULES:
+    lose 10% of account → stop for 1 week, review journal
+    lose 20% of account → stop for 1 month, restart demo
+
+RECOVERY RULE:
+    do NOT increase risk % to recover losses
+    do NOT overtrade to make back losses faster
+    same 2% risk every trade regardless of last result
+
+PAIRS TRADED:
+    USD pairs only (EURUSD, GBPUSD, USDJPY, XAUUSD)
+    no exotic pairs, no crypto, no indices (yet)

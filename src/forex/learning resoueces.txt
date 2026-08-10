@@ -1,0 +1,126 @@
+MunYun App
+
+
+Traders:
+	PB Patty
+	TJR
+	PB Blake
+	ICT
+	Julian Petroulas
+	Fabio Valentini [scalper]
+
+
+
+
+
+youtube channels
+1. For Pure Price Action & Trading Psychology:
+	The Trading Channel (Steven Hart)
+	InnerCircleTrader (ICT): Advanced.
+2. For Market Structure & Institutional Concepts
+	Wicksdontlie / Al
+	MambaFX
+3. For a More Traditional, Disciplined Approach
+	Rayner Teo (TradingwithRayner)
+	Trade Pro (formerly Adam Khoo)
+4. For Technical Analysis & Strategy Deep Dives
+	Tradeciety
+	Urban Forex (UKO)
+5. The "Transparent & Live" Traders
+	TraderNick
+	ForexSignals TV
+
+The market moves based on price, volume, and sentiment
+
+forex basics
+what is a pip
+how to use MT4
+risk management fundamentals
+
+
+entry/exit rules
+risk per trade
+journaling
+
+candlestick patterns
+institutional trading concepts
+technical analysis
+high-probability setups
+
+
+
+
+support/resistance
+supply and demand
+order block
+Price Action
+Smart Money Concepts (SMC)
+ICT
+Liquidity
+liquidity sweap
+fair value gap
+accumulation
+distribution
+manipulation
+
+
+
+Phase1
+	candlesticks
+	market structure
+	trend
+	range
+phase2
+	support/resistance
+	supply & demand
+Phase 3
+	Liquidity [where stop losses are placed. big players take liquidity before moving price they hunt stop loses]
+	Liquidity Sweep
+	Stop Hunts
+Phase 4
+	BOS (Break of Structure) 
+	CHoCH (Change of Character)
+	Order Blocks
+	FVG
+	Now SMC concepts start making sense.
+
+Phase 5
+	Wyckoff
+	Accumulation
+	Distribution
+	Manipulation
+
+
+| Concept            | Purpose          |
+| ------------------ | ---------------- |
+| Market Structure   | Direction        |
+| S/R, Supply/Demand | Area of interest |
+| Liquidity          | Trap detection   |
+| Price Action       | Confirmation     |
+| BOS / CHOCH        | Confirmation     |
+| Order Block        | Entry refinement |
+| FVG                | Entry refinement |
+| Risk Management    | Survival         |
+
+
+
+
+Where do I enter?
+Where is SL?
+Where is TP?
+
+Analysis answers:
+	"What will price likely do?"
+
+Execution answers:
+	"Where do I enter?"
+
+Risk management answers:
+	"How much do I buy?"
+
+Example:
+	Bullish trend          ← Phase 1 (market structure)
+	+ Price at demand zone ← Phase 2 (S/R / supply-demand)
+	+ Liquidity sweep      ← Phase 3 (liquidity)
+	+ Confirmation candle  ← Phase 4 (BOS on a lower timeframe)
+	→ Enter

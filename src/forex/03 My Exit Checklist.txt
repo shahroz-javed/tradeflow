@@ -1,0 +1,26 @@
+when to exit a trade
+
+PLANNED EXIT (good):
+    price reached TP level → close trade
+    price reached SL level → accept loss, move on
+
+EARLY EXIT — only valid reasons:
+    major unexpected news event
+    price action completely invalidates the setup
+    market structure changes against trade on H4+
+
+NEVER EXIT BECAUSE:
+    trade is in small profit and you feel scared
+    you feel like "this is enough"
+    trade has been open too long (time is not a reason)
+    someone else says market is going other way
+
+PARTIAL PROFIT (optional, once consistent):
+    close 50% at 1:1 R:R
+    move SL to breakeven
+    let remaining 50% run to full TP
+
+AFTER EXIT:
+    record trade in journal immediately
+    screenshot the chart
+    note: what worked, what didn't, emotions felt

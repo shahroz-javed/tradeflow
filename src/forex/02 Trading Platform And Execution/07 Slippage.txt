@@ -1,0 +1,14 @@
+What you wanted:  entry at 1.0800
+What you got:     entry at 1.0803
+
+Difference = 3 pips slippage
+
+Why it happens:
+  market moves fast between your click and fill
+  low liquidity at that exact price
+  broker execution speed
+
+How to minimize:
+  trade during high liquidity sessions (London, NY)
+  use limit orders instead of market orders
+  avoid entries right at news releases

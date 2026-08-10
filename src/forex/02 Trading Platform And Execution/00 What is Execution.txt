@@ -1,0 +1,13 @@
+Order Types are — the core of execution
+Spread — the hidden cost of execution
+Slippage
+
+
+
+1. Analysis complete → you have a setup
+2. You decide: entry price, SL, TP, lot size
+3. You choose order type (how to enter)
+4. You place the order on your broker platform
+5. Order gets filled → position is open
+6. You manage it until SL or TP is hit
+7. Position closes → result recorded

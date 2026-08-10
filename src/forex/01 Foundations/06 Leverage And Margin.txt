@@ -1,0 +1,70 @@
+what is leverage
+    Think of it like using a small amount of your own money to control a much larger amount in the market.
+    Leverage = Multiplier on your money
+        If leverage is 1:10, it means:
+        With $100, you can trade like you have $1,000.
+
+    Without leverage:
+        $100 investment
+        10% profit = $10 gain
+    With 1:10 leverage:
+        You control $1,000
+        10% profit = $100 gain
+    👉 Your $100 became $200
+
+
+    Without leverage:
+        You lose $10
+    With 1:10 leverage:
+        10% loss on $1,000 = $100 loss
+    👉 You lose your entire $100
+
+
+    If the loss reaches your deposit, broker will automatically close your trade (called liquidation or margin call).
+
+    Profit/Loss = Price Change % × Leverage
+
+    how to use leverage?
+        Example:
+        1000$ capital [no leverage] -> 1000$ unit (micro lot) -> pip value 10 cent -> 10000 pip loses can wash account
+        1000$ capital [1:50 leverage] -> 50000$ unit (5 mini lot) -> pip value 5$ -> 200 pip loses can wash account
+
+        Risk 1 to 2 % of capital per trade max
+        Stop Loss: 
+            1000$ account
+            risk 10$ [1%]
+            reward expected 20$
+
+            determine amount of pips to loss 10$
+                100pip stop loss 
+                $10/100pip = 10cent per pip -> [need 1 micro lot will cost 1000$ without leverage]
+                with 1:50 leverage 1000/50 = $20 for get 1 micro lot
+
+
+
+
+What is Margin?
+    Margin = Your own money that you put to open a leveraged trade.
+
+    It’s basically your security deposit.
+    Think of it like this:
+        You want to trade $1,000
+        You only have $100
+        Broker gives you 1:10 leverage
+
+    👉 That $100 is your margin.
+
+
+Margin = Position size ÷ Leverage = 3,200 ÷ 4,000 = $0.80
+Free margin remaining = $200 − $0.80 = $199.20
+
+How leverage affect margin:
+0.01 lot with 1:100 leverage
+    Position size:
+        0.01 × 100,000 = 1,000 units
+    Required margin:
+        1,000 ÷ 100 = $10
+
+0.01 lot with 1:4000 leverage
+    Required margin:
+        1,000 ÷ 4000 = $0.25

@@ -1,0 +1,29 @@
+run this before EVERY trade — all must be YES
+
+ANALYSIS:
+    [ ] higher timeframe trend identified (H4 or Daily)
+    [ ] valid zone identified (S/R or supply/demand)
+    [ ] zone is fresh (first or second touch)
+    [ ] zone aligns with trend direction
+
+CONFIRMATION:
+    [ ] confirmation candle printed at zone
+         long: hammer / bullish engulfing
+         short: shooting star / bearish engulfing
+    [ ] next candle confirms direction
+    [ ] fib level confluence (38.2-61.8) if applicable
+
+RISK:
+    [ ] lot size calculated (trade planner used)
+    [ ] SL placed beyond structure
+    [ ] TP at next zone (minimum 1:2 R:R)
+    [ ] risk is within 2% of account
+
+MINDSET:
+    [ ] i am calm — no fear or excitement
+    [ ] this trade follows my strategy
+    [ ] i am not trying to recover a loss
+    [ ] no major news in next 30 minutes
+
+ALL YES → enter
+ANY NO  → do not enter

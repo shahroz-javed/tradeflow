@@ -1,0 +1,8 @@
+1. Trend — which direction is price going overall?
+    Higher highs + higher lows = uptrend
+    Lower highs + lower lows = downtrend
+    Sideways[Range] = ranging (no clear direction) [don't trade]
+
+
+uptrend: higher highs and higher lows
+downtrend: lower lows and lower highs

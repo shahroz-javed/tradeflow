@@ -1,0 +1,45 @@
+An order is simply an instruction.
+
+You tell the broker:
+    Buy or sell under certain conditions.
+
+
+There are two categories.
+    Instant orders [Market Order]
+        Execute immediately.
+            Market Buy
+            Market Sell
+        Use when:
+            price is already at your zone
+            you want in immediately
+            confirmation candle just closed
+
+
+
+    Pending orders
+        Limit Order:
+            Enter at THIS price or better
+            Execute only if price reaches a specified level.
+            Examples:
+                Buy Limit
+                Sell Limit
+
+            Use when:
+            price hasn't reached your zone yet
+            you know exactly where you want in
+            you can't watch the screen
+
+        Stop Order:
+        "Enter ONLY IF price breaks this level"
+        Opposite logic from limit — triggers on breakout
+
+        Buy Stop: place ABOVE current price
+            triggers when price breaks up through your level
+
+        Sell Stop: place BELOW current price
+            triggers when price breaks down through your level
+
+        Use when:
+            trading breakouts
+            waiting for price to break structure (BOS)
+            confirmation that momentum is in your direction

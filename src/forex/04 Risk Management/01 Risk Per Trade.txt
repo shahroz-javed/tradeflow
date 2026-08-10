@@ -1,0 +1,17 @@
+Risk management is really the only "edge" that's fully in your control — strategy can be wrong sometimes, but if your risk management is solid, no single trade or losing streak can hurt you badly.
+
+
+
+Never risk more than 1-2% of your account on a single trade
+when starting out or during high-volatility periods professionals often go even lower (0.5-1%)
+
+
+
+Risk Amount = Account Balance × Risk %
+
+
+    2:1 [like 2 dollar profit 1 dollar loss]
+
+    decide how much profit you wanna make 
+    how much of you account value you can loose [i.e 2%]
+    then see how much you need to put in trade

@@ -11,7 +11,10 @@ import {
   LayoutDashboard,
   LineChart,
   LogOut,
+  NotebookText,
+  Radio,
   Settings as SettingsIcon,
+  WalletCards,
   X,
 } from 'lucide-react'
 import { useAppStore } from '../store/useAppStore'
@@ -24,6 +27,8 @@ const NAV_ITEMS = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard, end: true },
   { to: '/planner', label: 'Trade Planner', icon: Calculator },
   { to: '/journal', label: 'Journal', icon: ClipboardCheck, badge: 'trades' },
+  { to: '/live-price', label: 'Live Price', icon: Radio },
+  { to: '/transactions', label: 'Transactions', icon: WalletCards },
   { to: '/sessions', label: 'Sessions', icon: Clock },
   { to: '/events', label: 'Critical Events', icon: AlertTriangle },
   { to: '/analytics', label: 'Analytics', icon: BarChart3 },
@@ -31,6 +36,7 @@ const NAV_ITEMS = [
   { to: '/routines', label: 'Routines', icon: Gauge, badge: 'routine' },
   { to: '/review', label: 'Weekly Review', icon: LineChart },
   { to: '/review/monthly', label: 'Monthly Review', icon: CalendarDays },
+  { to: '/docs', label: 'Docs', icon: NotebookText },
   { to: '/settings', label: 'Settings', icon: SettingsIcon },
 ]
 
